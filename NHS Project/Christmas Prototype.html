@@ -6,8 +6,25 @@
 	<title> NHS WayFinder </title>
 </head>
 
-<body>
-	<input contenteditable></input>
+<body onLoad = "onLoad()" >
+
+		<input type = "text" id = "inputbox" value = "">
+		<button onclick = "getName()"> Find Name</button>
+
+		<br>
+		<br> 
+		<br>
+
+		Starting Location     
+		<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
+
+		<br>
+		<br>
+		<br>
+
+		Destination     
+		<select name = "dropdownboxend" id = dropdownboxend></select>
+
 </body>
 
 <script src="Script.js"></script>

@@ -82,13 +82,19 @@ function startAtId(idNumber)
 		console.log("Node not found");
 }
 
+function getName()
+{
+	var nameEntry = document.getElementById("inputbox").value;
+	startAtName(nameEntry.toUpperCase());
+}
+
 function startAtName(enterName)
 {
 	i = 0;
 	var found = false;
 	while (found == false && i != nodes.length - 1)
 	{
-		if (nodes[i].name.toUpperCase() == enterName.toUpperCase())
+		if (nodes[i].name.toUpperCase() == enterName)
 			found = true;
 		else
 			i++;
@@ -97,5 +103,40 @@ function startAtName(enterName)
 		console.log("Node found as " + nodes[i].name + " at id " + nodes[i].id);
 	else
 		console.log("Node not found");
+	return nodes[i].name;
 }
 
+function onLoad()
+{
+	populateDropDownStart();
+	populateDropDownEnd();
+}
+
+function populateDropDownStart()
+	{
+		for (var i = 0; i < nodes.length; i++) {
+			if (nodes[i].type == Q)
+				addToList(dropdownboxstart, i);
+		}
+
+		for (var i = 0; i < nodes.length; i++) {
+			if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+				addToList(dropdownboxstart, i);
+		}
+	}
+
+	function populateDropDownEnd()
+	{
+		for (var i = 0; i < nodes.length; i++) {
+			if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+				addToList(dropdownboxend, i);
+		}
+	}
+
+	function addToList(dropDown,i)
+	{
+		var newDropDownOption = document.createElement("OPTION");
+		newDropDownOption.text = nodes[i].name;
+		newDropDownOption.value = nodes[i].name;
+		dropDown.options.add(newDropDownOption);
+	}

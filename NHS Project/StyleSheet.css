@@ -1,6 +1,6 @@
 input
 {
-	height: 16px;
+	height: 24px;
 	width: 128px;
 	-webkit- appearance: textfield;
 	-moz- appearance: textfield;
@@ -11,10 +11,28 @@ input
 	resize: none;
 }
 
-#input
+select
 {
-	height: 32px;
-	width: 32px;
+	height: 24px;
+	width: 128px;
+	-webkit- appearance: textfield;
+	-moz- appearance: textfield;
+	background-color: white;
+	border: 1px solid darkgrey;
+	box-shadow: 1px 1px 1px 0 lightgrey inset;
+	font-family : "Arial", sans-serif;
+	resize: none;
+}
+
+body
+{
+	font-family : "Arial", sans-serif;
+}
+
+/*#inputbox
+{
+	height: 16px;
+	width: 128px;
 	-webkit- appearance: textfield;
 	-moz- appearance: textfield;
 	background-color: white;

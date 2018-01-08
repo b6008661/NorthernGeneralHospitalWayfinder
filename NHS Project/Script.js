@@ -107,13 +107,6 @@ function startAtName(enterName)
 	return i;
 }
 
-function onLoad()
-{
-	populateDropDownStart();
-	populateDropDownEnd();
-	selectDefaultStart();
-}
-
 window.onload = function()
 {
 	populateDropDownStart();
@@ -177,6 +170,10 @@ function findPath()
 	fastestPath = new Array();
 	var loc = start;
 	var previous = start;
+	var isDisabled = document.getElementById("disabled").checked;
+
+	var pathTraversable = true;
+
 	path.push(start);
 	followPath();
 
@@ -189,14 +186,18 @@ function findPath()
 	function followPath()
 	{
 		for (var i = 0; i < nodes[loc].connections.length; i++) {	 //Loops through each edge
-			if(!path.includes(nodes[loc].connections[i].id)) {			//Check if next node is in the path array (double back)
+			if (isDisabled==true && nodes[loc].disabled == false)
+				pathTraversable = false;
+			else
+				pathTraversable = true;
+			if(!path.includes(nodes[loc].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
 				path.push(nodes[loc].connections[i].id);						//Adds node to path array
-				if (nodes[loc].connections[i].id == end) {						//Checks if next node is the end
+				if (nodes[loc].connections[i].id == end) {					//Checks if next node is the end
 					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
 						fastestPath = path.slice();											//Copies current path into the global variable fastest path
 						console.log(fastestPath);
 					}
-					else if (path.length <= fastestPath.length) {			//Checks if a new path to the end is faster than the current one
+					else if (path.length <= fastestPath.length) {				//Checks if a new path to the end is faster than the current one
 							fastestPath = path.slice();										//Copies current path into the global variable fastest path
 							console.log(fastestPath);
 					}
@@ -211,9 +212,9 @@ function findPath()
 					else {
 						loc = start;																		//If the path array has backtracked to the start
 						//path.length = 1
+							}
+						}
 					}
 				}
 			}
-		}
-	}
 }

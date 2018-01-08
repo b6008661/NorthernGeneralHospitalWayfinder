@@ -160,59 +160,35 @@ function findPath()
 	}
 
 
+
 	function followPath()
 	{
-		for (var i = 0; i < nodes[loc].connections.length; i++)
-		{
-			if(!path.includes(nodes[loc].connections[i].id))	//Check if next node is in the path array (double back)
-			{
-				path.push(nodes[loc].connections[i].id);
-				if (nodes[loc].connections[i].id == end)
-				{
-					if (fastestPath.length == 0)
-					{
-						fastestPath = path.slice();
-						//fastestPath.push(nodes[loc].connections[i].id);
+		for (var i = 0; i < nodes[loc].connections.length; i++) {	 //Loops through each edge
+			if(!path.includes(nodes[loc].connections[i].id)) {			//Check if next node is in the path array (double back)
+				path.push(nodes[loc].connections[i].id);						//Adds node to path array
+				if (nodes[loc].connections[i].id == end) {						//Checks if next node is the end
+					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
+						fastestPath = path.slice();											//Copies current path into the global variable fastest path
 						console.log(fastestPath);
 					}
-					else
-					{
-					if (path.length <= fastestPath.length)
-						{
-							fastestPath = path.slice();
-							//fastestPath.push(nodes[loc].connections[i].id);
+					else if (path.length <= fastestPath.length) {			//Checks if a new path to the end is faster than the current one
+							fastestPath = path.slice();										//Copies current path into the global variable fastest path
 							console.log(fastestPath);
-						}
 					}
 				}
-				else
-				{
-					loc = nodes[loc].connections[i].id;
-					followPath();
-					if (path.length > 1)
-					{
-						path.splice(-1,1);
-						loc = path[path.length-1];
+				else {																								//If next node isn't the destination then...
+					loc = nodes[loc].connections[i].id;								//Set new location to the next node
+					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
+					if (path.length > 1)	{													  //If the path array holds 2 or more items
+						path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
+						loc = path[path.length-1]; 										  //New location is the previous node
 					}
-					else
-					{
-						loc = start;
-						path.length = 1;
+					else {
+						loc = start;																		//If the path array has backtracked to the start
+						//path.length = 1
 					}
 				}
 			}
 		}
-
-		/*if (path.length > 1)
-		{
-			path.splice(-1,1);
-			loc = path[path.length-1];
-		}
-		else
-		{
-			loc = start;
-			path.length = 1;
-		}*/
-
 	}
 }

@@ -6,13 +6,14 @@ var S = "Stairs";
 var L = "Lift";
 var C = "Cafe";
 
-var nodeClass = function(id, name, disabled, type)
+var nodeClass = function(id, name, disabled, type, facing)
 {
 	this.id = id;
 	this.name = name;
 	this.connections = new Array();
 	this.disabled = disabled;
 	this.type = type;
+	this.facing = facing;
 }
 
 var connect = function(idNumber, direction)
@@ -27,17 +28,17 @@ i=0;
 
 var nodes = new Array;
 
-var entrance = new nodeClass(i++,"West Entrance",true, E);
-var outpatients = new nodeClass(i++,"Outpatients",true, M);
-var wardA = new nodeClass(i++, "Ward A", true, M);
-var qrWest = new nodeClass(i++, "QR Code West Corridor", true, Q);
-var cardiology = new nodeClass(i++, "Cardiology", true, M);
-var intersection = new nodeClass(i++, "Intersection", true, H);
-var qrNorth = new nodeClass(i++, "QR Code North Stairs", true, Q);
-var stairsNorth = new nodeClass(i++, "Stairs North", false, S);
-var qrEast = new nodeClass(i++, "QR Code East Corridor", true, Q);
-var liftEast = new nodeClass(i++, "Lift East Corridor", true, L);
-var cafeEast = new nodeClass(i++, "The Sun Rise Cafe", true, C);
+var entrance = new nodeClass(i++,"West Entrance",true, E, "Null");
+var outpatients = new nodeClass(i++,"Outpatients",true, M, "Null");
+var wardA = new nodeClass(i++, "Ward A", true, M, "Null");
+var qrWest = new nodeClass(i++, "QR Code West Corridor", true, Q, "North");
+var cardiology = new nodeClass(i++, "Cardiology", true, M, "Null");
+var intersection = new nodeClass(i++, "Intersection", true, H, "Null");
+var qrNorth = new nodeClass(i++, "QR Code North Stairs", true, Q, "East");
+var stairsNorth = new nodeClass(i++, "Stairs North", false, S, "Null" );
+var qrEast = new nodeClass(i++, "QR Code East Corridor", true, Q, "Null");
+var liftEast = new nodeClass(i++, "Lift East Corridor", true, L, "Null");
+var cafeEast = new nodeClass(i++, "The Sun Rise Cafe", true, C, "Null");
 
 
 entrance.connections.push(new connect(outpatients.id, "East"));
@@ -112,6 +113,7 @@ window.onload = function()
 	populateDropDownStart();
 	populateDropDownEnd();
 	selectDefaultStart();
+	document.getElementById("disabled").checked = false;
 }
 
 function getParameterByName(name, url) {
@@ -176,12 +178,7 @@ function findPath()
 
 	path.push(start);
 	followPath();
-
-	for (var i = 0; i < fastestPath.length; i++) {
-		console.log( i + ". " + startAtId(fastestPath[i]));
-	}
-
-
+	displayDirections();
 
 	function followPath()
 	{
@@ -205,16 +202,133 @@ function findPath()
 				else {																								//If next node isn't the destination then...
 					loc = nodes[loc].connections[i].id;								//Set new location to the next node
 					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
-					if (path.length > 1)	{													  //If the path array holds 2 or more items
-						path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
-						loc = path[path.length-1]; 										  //New location is the previous node
-					}
-					else {
-						loc = start;																		//If the path array has backtracked to the start
-						//path.length = 1
+						if (path.length > 1)	{													  //If the path array holds 2 or more items
+							path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
+							loc = path[path.length-1]; 										  //New location is the previous node
+							}
+							else {
+								loc = start;																		//If the path array has backtracked to the start
+								path.length = 1
 							}
 						}
 					}
 				}
 			}
+
+		function displayDirections()
+		{
+
+			for (var i = 0; i < fastestPath.length; i++) { //List all items in array
+					console.log( i + ". " + startAtId(fastestPath[i]));
+				}
+
+
+			if (nodes[fastestPath[0]].type == Q) {
+			var newFacing = nodes[fastestPath[0]].facing;
+			console.log("Facing the QR code turn " + findInstruction(nodes[fastestPath[0]].facing,findNextNodeDirection(fastestPath[0])));
+			//facing = findNextNodeDirection(fastestPath[0]);
+				for (var i = 1; i < fastestPath.length; i++) {
+					console.log("Go " + findInstruction(newFacing,findNextNodeDirection(fastestPath[i])));
+					//facing = findInstruction(nodes[fastestPath[i]].facing,findNextNodeDirection(fastestPath[i]));
+				}
+			}
+		}
+
+		function findNextNodeDirection(currentNode)
+		{
+			nextNode = currentNode + 1;
+			for (var i = 0; i < nodes[currentNode].connections.length; i++) {
+				if (nodes[currentNode].connections[i].id == fastestPath[currentNode + 1 ])
+					return nodes[fastestPath[currentNode]].connections[i].direction;
+			}
+		}
+
+		function findInstruction(currentFacing, end)
+		{
+			var compassDirection;
+			switch (currentFacing) {
+				case "North":
+						switch (end) {
+							case "North":
+								compassDirection = "Go straight";
+								newFacing = "North";
+								break;
+							case "East":
+								compassDirection = "Right";
+								newFacing = "East";
+								break;
+							case "South":
+								compassDirection = "Turn around";
+								newFacing = "South";
+							case "West":
+								compassDirection = "Left";
+								newFacing = "West";
+								break;
+						}
+					break;
+				case "East":
+					switch(end){
+						case "North":
+							compassDirection = "Left";
+							newFacing = "North";
+							break;
+						case "East":
+							compassDirection = "Go straight";
+							newFacing = "East";
+							break;
+						case "South":
+							compassDirection = "Right";
+							newFacing = "South";
+							break;
+						case "West":
+							compassDirection = "Turn around";
+							newFacing = "West"
+							break;
+					}
+					break;
+				case "South":
+					switch(end){
+						case "North":
+							compassDirection = "Turn around";
+							newFacing = "North"
+							break;
+						case "East":
+							compassDirection = "Left";
+							newFacing = "East";
+							break;
+						case "South":
+							compassDirection = "Go straight";
+							newFacing = "South";
+							break;
+						case "West":
+							compassDirection = "Right";
+							newFacing = "West";
+							break;
+					}
+					break;
+				case "West":
+					switch(end){
+						case "North":
+							compassDirection = "Right";
+							newFacing = "North";
+							break;
+						case "East":
+							compassDirection = "Turn around";
+							newFacing = "East";
+							break;
+						case "South":
+							compassDirection = "Left";
+							newFacing = "South";
+							break;
+						case "West":
+							compassDirection = "Go straight"
+							newFacing = "West";
+							break;
+					}
+
+			}
+
+			return compassDirection;
+		}
+
 }

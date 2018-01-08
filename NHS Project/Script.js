@@ -111,6 +111,31 @@ function onLoad()
 {
 	populateDropDownStart();
 	populateDropDownEnd();
+	selectDefaultStart();
+}
+
+window.onload = function()
+{
+	populateDropDownStart();
+	populateDropDownEnd();
+	selectDefaultStart();
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function selectDefaultStart()
+{
+	var list = document.getElementById('dropdownboxstart');
+	var nodeID = getParameterByName("nodeID");
+	list.selectedIndex = nodeID;
 }
 
 function populateDropDownStart()

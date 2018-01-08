@@ -1,5 +1,28 @@
+.container {
+	margin: 20px;
+}
+
 header {
-	
+padding: 20px;
+}
+
+.locationInput{
+	text-align: center;
+}
+
+input[type=text] {
+	padding: 8px 20px;
+	resize: none;
+}
+
+input[type=submit] {
+	position: relative;
+	width: 100px;
+	height: 50px;
+	background-color:#0064d7;
+	border: none;
+	font-size: 20px;
+	color: #ffffff;
 }
 
 img {
@@ -69,6 +92,10 @@ body
 	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.disabled {
+	text-align: center;
 }
 
 /*#inputbox

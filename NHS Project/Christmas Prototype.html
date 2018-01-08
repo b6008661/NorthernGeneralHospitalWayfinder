@@ -11,7 +11,12 @@
 <body>
 <header>
 	<img src="images/nhs_logo.jpg" alt="nhs logo"><a href="https://www.nhs.uk/pages/home.aspx"></a>
-	<p>Enter location: </p>
+	<form class="locationInput">
+		<input type= "text" name = "location" value="Enter something here ">
+		<input type="submit" value="Submit">
+
+	</form>
+
 
 
 </header>
@@ -23,6 +28,7 @@
 		<br>
 		<br>
 	  -->
+		<div class="container">
 		<div class = "box">
 		<h2>Select your starting location:</h2>
 		<div class = "dropDown">
@@ -41,14 +47,16 @@
 
 		<br>
 		<br>
-
+<div class="disabled">
 		<form action="">
 		Disabled? <input type="checkbox" name = "disabled" id="disabled" checked=false>
 		</form>
+	</div>
 
 		<br>
 		<div class="findPath">
 		<button class = "button" onclick = "findPath()"> Find Path </button>
+</div>
 </div>
 </body>
 

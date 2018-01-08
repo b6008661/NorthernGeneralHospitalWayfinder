@@ -50,7 +50,7 @@
 		<br>
 <div class="disabled">
 		<form action="">
-		Disabled? <input type="checkbox" name = "disabled" id="disabled" checked=false>
+		<h2>Do you need disabled access? <input type="checkbox" name = "disabled" id="disabled" checked=false>
 		</form>
 	</div>
 

@@ -76,10 +76,10 @@ select
 	position: relative;
 	width: 100px;
 	height: 50px;
-	background-color:#0058b8;
+	background-color:#D3D3D3;
 	border: none;
 	font-size: 20px;
-	color: #ffffff;
+	color: #000;
 }
 body
 {
@@ -96,7 +96,11 @@ body
 }
 
 .disabled {
-	text-align: center;
+	padding: 5px;
+	height: 250px;
+	width: 50%;
+	margin-left: 45px;
+	background-color: #ffffff;
 }
 
 #dropdownboxstart {

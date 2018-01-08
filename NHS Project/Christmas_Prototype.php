@@ -48,6 +48,7 @@
 
 		<br>
 		<br>
+		<div class = "section">
 <div class="disabled">
 		<form action="">
 		<h2>Do you need disabled access? <input type="checkbox" name = "disabled" id="disabled" checked=false>
@@ -57,6 +58,7 @@
 		<br>
 		<div class="findPath">
 		<button class = "button" onclick = "findPath()"> Find Path </button>
+</div>
 </div>
 </div>
 </body>

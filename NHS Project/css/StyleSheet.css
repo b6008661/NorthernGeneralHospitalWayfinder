@@ -1,47 +1,42 @@
+html {
+	height:100%;
+}
 .container {
 	background-color: #0058b8;
+	height: 100%;
 }
-
 header {
 	padding: 20px;
 background-color: #0058b8;
 }
-
 .locationInput{
 	text-align: center;
 }
-
 input[type=text] {
 	padding: 8px 20px;
 	resize: none;
 }
-
 input[type=submit] {
 	position: relative;
 	width: 100px;
 	height: 50px;
-	background-color:#D3D3D3;
+	background-color:#fff;
 	border: none;
 	font-size: 20px;
-	color: #000000;
+	color: #0058b8;
 }
-
 img {
 	height: 220px;
 	width: 550px;
 	margin-left: 200px;
 }
-
 h2 {
 	text-align: center;
 	color: #0058b8;
 	font-size: 50px;
 	padding: 0px;
-
 }
-
-input
-{
+input {
 	height: 24px;
 	width: 128px;
 	-webkit- appearance: textfield;
@@ -52,10 +47,7 @@ input
 	font-family : "Arial", sans-serif;
 	resize: none;
 }
-
-select
-{
-	/*margin-left: 400px;*/
+select {
 	height: 24px;
 	width: 128px;
 	-webkit- appearance: textfield;
@@ -71,21 +63,24 @@ select
 }
 .findPath {
 	text-align: center;
+	float:left;
+	margin-left: 140px;
+	margin-top: 25px;
 }
 .button {
 	position: relative;
-	width: 100px;
-	height: 50px;
-	background-color:#D3D3D3;
+	width: 200px;
+	height: 150px;
+	background-color:#fff;
 	border: none;
-	font-size: 20px;
-	color: #000;
-}
-body
-{
-	font-family : "Arial", "helvatica", sans-serif;
+	font-size: 40px;
+	color: #0058b8;
 }
 
+body {
+	font-family : "Arial", "helvatica", sans-serif;
+	min-height: 100%;
+}
 .box {
 	padding: 5px;
 	height: 250px;
@@ -94,22 +89,32 @@ body
 	margin-right: auto;
 	background-color: #ffffff;
 }
-
+.section {
+	padding: 5px;
+	height: 250px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 25px;
+	background-color: #0058b8;
+}
 .disabled {
 	padding: 5px;
 	height: 250px;
 	width: 50%;
-	margin-left: 45px;
 	background-color: #ffffff;
+	float: left;
 }
-
+input[type=checkbox] {
+	width: 50px;
+	height: 50px;
+}
 #dropdownboxstart {
 	min-width: 500px;
 	text-align: center;
 	font-size: 40px;
 	height: auto;
 }
-
 #dropdownboxend {
 	min-width: 500px;
 	text-align: center;

@@ -36,7 +36,7 @@ var cardiology = new nodeClass(i++, "Cardiology", true, M, "Null");
 var intersection = new nodeClass(i++, "Intersection", true, H, "Null");
 var qrNorth = new nodeClass(i++, "QR Code North Stairs", true, Q, "East");
 var stairsNorth = new nodeClass(i++, "Stairs North", false, S, "Null" );
-var qrEast = new nodeClass(i++, "QR Code East Corridor", true, Q, "Null");
+var qrEast = new nodeClass(i++, "QR Code East Corridor", true, Q, "South");
 var liftEast = new nodeClass(i++, "Lift East Corridor", true, L, "Null");
 var cafeEast = new nodeClass(i++, "The Sun Rise Cafe", true, C, "Null");
 
@@ -49,7 +49,7 @@ cardiology.connections.push(new connect(wardA.id, "West"), new connect(intersect
 intersection.connections.push(new connect(cardiology.id, "West"), new connect(stairsNorth.id, "North"), new connect(liftEast.id, "East"));
 qrNorth.connections.push(new connect(intersection.id, "South"), new connect(stairsNorth.id, "North"));
 stairsNorth.connections.push(new connect(intersection.id, "South"));
-qrEast.connections.push(new connect(intersection.id, "East"), new connect (liftEast.id, "East"));
+qrEast.connections.push(new connect(intersection.id, "West"), new connect (liftEast.id, "East"));
 liftEast.connections.push(new connect(intersection.id, "East"), new connect (cafeEast.id, "East"));
 cafeEast.connections.push(new connect(liftEast.id, "West"));
 
@@ -173,7 +173,6 @@ function findPath()
 	var loc = start;
 	var previous = start;
 	var isDisabled = document.getElementById("disabled").checked;
-
 	var pathTraversable = true;
 
 	path.push(start);
@@ -183,33 +182,40 @@ function findPath()
 	function followPath()
 	{
 		for (var i = 0; i < nodes[loc].connections.length; i++) {	 //Loops through each edge
+			//console.log("Location is " + loc)
 			if (isDisabled==true && nodes[loc].disabled == false)
 				pathTraversable = false;
 			else
 				pathTraversable = true;
 			if(!path.includes(nodes[loc].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
 				path.push(nodes[loc].connections[i].id);						//Adds node to path array
+				//console.log(path);
 				if (nodes[loc].connections[i].id == end) {					//Checks if next node is the end
+					//console.log(path);
 					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
 						fastestPath = path.slice();											//Copies current path into the global variable fastest path
-						console.log(fastestPath);
+						//console.log("End" + fastestPath);
+						path.splice(-1,1);
 					}
 					else if (path.length <= fastestPath.length) {				//Checks if a new path to the end is faster than the current one
 							fastestPath = path.slice();										//Copies current path into the global variable fastest path
-							console.log(fastestPath);
+							//console.log(fastestPath);
+							path.splice(-1,1);
 					}
 				}
 				else {																								//If next node isn't the destination then...
 					loc = nodes[loc].connections[i].id;								//Set new location to the next node
 					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
-						if (path.length > 1)	{													  //If the path array holds 2 or more items
+						//if (path.length > )	{													  //If the path array holds 2 or more items
 							path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
+							//console.log(path);
 							loc = path[path.length-1]; 										  //New location is the previous node
-							}
-							else {
-								loc = start;																		//If the path array has backtracked to the start
-								path.length = 1
-							}
+							//}
+							//else {
+								//loc = start;																		//If the path array has backtracked to the start
+								//console.log("Else" + path);
+								//path.splice(-1,1);
+							//}
 						}
 					}
 				}
@@ -222,24 +228,49 @@ function findPath()
 					console.log( i + ". " + startAtId(fastestPath[i]));
 				}
 
-
 			if (nodes[fastestPath[0]].type == Q) {
 			var newFacing = nodes[fastestPath[0]].facing;
-			console.log("Facing the QR code turn " + findInstruction(nodes[fastestPath[0]].facing,findNextNodeDirection(fastestPath[0])));
-			//facing = findNextNodeDirection(fastestPath[0]);
-				for (var i = 1; i < fastestPath.length; i++) {
-					console.log("Go " + findInstruction(newFacing,findNextNodeDirection(fastestPath[i])));
-					//facing = findInstruction(nodes[fastestPath[i]].facing,findNextNodeDirection(fastestPath[i]));
+			var i = 0;
+			console.log("Facing the QR code turn " + findInstruction(newFacing, findNextNodeDirection(i)) + " and walk straight");
+			newFacing = findNextNodeDirection(i);
+					for (i=1; i < fastestPath.length-1; i++) {
+							var nextDirection = findInstruction(newFacing, findNextNodeDirection(i));
+							var locationName = nodes[fastestPath[i]].name;
+							var cafeMessage
+
+							if (nodes[fastestPath[i]].type == L)
+								locationName = "the lifts";
+							if (nodes[fastestPath[i]].type == H)
+								locationName = "the intersection";
+
+
+							if (nextDirection == "left" || nextDirection == "right")
+								console.log("Turn " + nextDirection + " at " + locationName);
+								else if (nextDirection == "straight")
+									console.log("Continue walking past " + locationName);
+									else if(nextDirection == "Turn around and walk forward")
+									 	console.log(nextDirection + " past " + locationName);
+
+
+
+							newFacing = findNextNodeDirection(i);
+					}
+					console.log("You have now reached " + nodes[fastestPath[fastestPath.length-1]].name);
+
+					if (nodes[fastestPath[i]].type == C)
+						console.log("Enjoy your meal!");
+						console.log("-------------------");
 				}
 			}
 		}
 
-		function findNextNodeDirection(currentNode)
+		function findNextNodeDirection(fastestPathPosition)
 		{
-			nextNode = currentNode + 1;
-			for (var i = 0; i < nodes[currentNode].connections.length; i++) {
-				if (nodes[currentNode].connections[i].id == fastestPath[currentNode + 1 ])
-					return nodes[fastestPath[currentNode]].connections[i].direction;
+			var nextFastestPathPosition = fastestPathPosition + 1;
+
+			for (var i = 0; i < nodes[fastestPath[fastestPathPosition]].connections.length; i++) {
+				if (nodes[fastestPath[fastestPathPosition]].connections[i].id == fastestPath[nextFastestPathPosition])
+					return nodes[fastestPath[fastestPathPosition]].connections[i].direction;
 			}
 		}
 
@@ -250,18 +281,18 @@ function findPath()
 				case "North":
 						switch (end) {
 							case "North":
-								compassDirection = "Go straight";
+								compassDirection = "straight";
 								newFacing = "North";
 								break;
 							case "East":
-								compassDirection = "Right";
+								compassDirection = "right";
 								newFacing = "East";
 								break;
 							case "South":
-								compassDirection = "Turn around";
+								compassDirection = "Turn around and walk forward";
 								newFacing = "South";
 							case "West":
-								compassDirection = "Left";
+								compassDirection = "left";
 								newFacing = "West";
 								break;
 						}
@@ -269,19 +300,19 @@ function findPath()
 				case "East":
 					switch(end){
 						case "North":
-							compassDirection = "Left";
+							compassDirection = "left";
 							newFacing = "North";
 							break;
 						case "East":
-							compassDirection = "Go straight";
+							compassDirection = "straight";
 							newFacing = "East";
 							break;
 						case "South":
-							compassDirection = "Right";
+							compassDirection = "right";
 							newFacing = "South";
 							break;
 						case "West":
-							compassDirection = "Turn around";
+							compassDirection = "Turn around and walk forward";
 							newFacing = "West"
 							break;
 					}
@@ -289,19 +320,19 @@ function findPath()
 				case "South":
 					switch(end){
 						case "North":
-							compassDirection = "Turn around";
+							compassDirection = "Turn around and walk forward";
 							newFacing = "North"
 							break;
 						case "East":
-							compassDirection = "Left";
+							compassDirection = "left";
 							newFacing = "East";
 							break;
 						case "South":
-							compassDirection = "Go straight";
+							compassDirection = "straight";
 							newFacing = "South";
 							break;
 						case "West":
-							compassDirection = "Right";
+							compassDirection = "right";
 							newFacing = "West";
 							break;
 					}
@@ -309,7 +340,7 @@ function findPath()
 				case "West":
 					switch(end){
 						case "North":
-							compassDirection = "Right";
+							compassDirection = "right";
 							newFacing = "North";
 							break;
 						case "East":
@@ -317,11 +348,11 @@ function findPath()
 							newFacing = "East";
 							break;
 						case "South":
-							compassDirection = "Left";
+							compassDirection = "left";
 							newFacing = "South";
 							break;
 						case "West":
-							compassDirection = "Go straight"
+							compassDirection = "straight"
 							newFacing = "West";
 							break;
 					}
@@ -329,6 +360,4 @@ function findPath()
 			}
 
 			return compassDirection;
-		}
-
 }

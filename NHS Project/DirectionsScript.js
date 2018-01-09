@@ -4,21 +4,21 @@ var context = drawing.getContext('2d');					//set context
 
 var imageObj = new Image();								//new image
 
-
 imageObj.onload=function()								//function to load image first
 {
 context.drawImage(imageObj,100, 20, 500,500);			//draw image with coords to start and size
-
 };
 
 imageObj.src = 'HospitalFloorPlanBasic.png';			//image selection
 
 context.globalCompositeOperation = 'destination-over';	//composition selection to put arrow on top of image
       context.beginPath();									//start arrow
-      context.moveTo(100, 50);								//start point
-      context.lineTo(160, 420);								//end point
-      context.lineWidth = 10;									//line width
-                                  // line color - self explanatory
+      context.moveTo(270, 270);								//start point
+      context.lineTo(430, 265);								//end point
+context.moveTo(430, 265);
+context.lineTo(578, 100);
+      context.lineWidth = 3;									//line width
+// line color - self explanatory
       context.strokeStyle = "black";
       context.stroke();
 

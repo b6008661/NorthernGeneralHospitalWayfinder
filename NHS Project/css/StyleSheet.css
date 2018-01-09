@@ -1,43 +1,70 @@
-html {
-	height:100%;
+
+body {
+	font-family : "Arial", "helvatica", sans-serif;
+	padding:0;
+	margin:0;
+	width: 100%;
+	background-color: #0058b8;
 }
 .container {
 	background-color: #0058b8;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	align-content: center;
+	justify-content: flex-start;
+	margin-bottom: 25px;
+	width:80%;
+	margin:10px auto;
 }
 header {
+	width:85%;
 	padding: 20px;
-background-color: #0058b8;
+	margin: 10px;
+	background-color: #0058b8;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
-.locationInput{
+header>img {
+	width: 60%;
+	height: 18%;
+}
+.headerText {
+	width: 40%;
+	height:18%;
 	text-align: center;
+	color: #fff;
 }
+form {
+	display: inline;
+}
+
 input[type=text] {
 	padding: 8px 20px;
-	resize: none;
+	float:left;
+	height: 30%;
+	width: 50%;
 }
 input[type=submit] {
-	position: relative;
-	width: 100px;
-	height: 50px;
+	width: 32%;
+	height: 80%;
 	background-color:#fff;
 	border: none;
-	font-size: 20px;
+	font-size: 15px;
 	color: #0058b8;
+	float:right;
 }
-img {
-	height: 220px;
-	width: 550px;
-	margin-left: 200px;
+h1 {
+	font-size: 80%;
 }
 h2 {
 	text-align: center;
 	color: #0058b8;
-	font-size: 50px;
+	font-size: 10px;
 	padding: 0px;
+}
+p {
+	font-size: 60%;
 }
 input {
 	height: 24px;
@@ -64,66 +91,40 @@ select {
 .dropDown {
 	text-align: center;
 }
-.findPath {
-	text-align: center;
-	float:left;
-	margin-left: 140px;
-	margin-top: 25px;
-}
 .button {
 	position: relative;
-	width: 200px;
-	height: 150px;
-	background-color:#fff;
+	width: 80%;
+	height: 10%;
+	background-color:#0058b8;
 	border: none;
-	font-size: 40px;
-	color: #0058b8;
-
+	font-size: 20px;
+	color: #fff;
 }
-
-body {
-	font-family : "Arial", "helvatica", sans-serif;
-	min-height: 100%;
-}
-.box {
-	padding: 5px;
-	height: 250px;
-	width: 90%;
+.box  {
+	padding: 10px;
+	height: 30%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #ffffff;
+	text-align: center;
 }
-.section {
-	padding: 5px;
-	height: 250px;
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 25px;
-	background-color: #0058b8;
-}
-.disabled {
-	padding: 5px;
-	height: 250px;
-	width: 50%;
-	background-color: #ffffff;
-	float: left;
-}
+
 input[type=checkbox] {
-	width: 50px;
-	height: 50px;
+	width: 20px;
+	height: 20px;
 	text-align: center;
 }
 #dropdownboxstart {
-	min-width: 500px;
+	min-width: 90%;
 	text-align: center;
-	font-size: 40px;
+	font-size: 15px;
 	height: auto;
 }
 #dropdownboxend {
-	min-width: 500px;
+	min-width: 90%;
 	text-align: center;
-	font-size: 40px;
+	font-size: 15px;
 	height: auto;
 }
 

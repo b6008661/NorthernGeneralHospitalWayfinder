@@ -49,17 +49,19 @@
 		<br>
 		<br>
 		<div class = "section">
-<div class="disabled">
+			<div class="disabled">
 		<form action="">
 		<h2>Do you need disabled access? <input type="checkbox" name = "disabled" id="disabled" checked=false>
 		</form>
-	</div>
+			</div>
 
 		<br>
+		<form action="directions.html">
 		<div class="findPath">
 		<button class = "button" onclick = "findPath()"> Find Path </button>
-</div>
-</div>
+		</div>
+		</form>
+		</div>
 </div>
 </body>
 

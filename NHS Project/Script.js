@@ -77,10 +77,6 @@ function startAtId(idNumber)
 		else
 			i++;
 	}
-	/*if (found == true)
-		console.log("Node found as " + nodes[i].name + " at id " + nodes[i].id);
-	else
-		console.log("Node not found");*/
 	return nodes[i].name;
 }
 
@@ -215,40 +211,27 @@ function findPath()
 	function followPath()
 	{
 		for (var i = 0; i < nodes[loc].connections.length; i++) {	 //Loops through each edge
-			//console.log("Location is " + loc)
 			if (isDisabled==true && nodes[loc].disabled == false)
 				pathTraversable = false;
 			else
 				pathTraversable = true;
 			if(!path.includes(nodes[loc].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
 				path.push(nodes[loc].connections[i].id);						//Adds node to path array
-				//console.log(path);
 				if (nodes[loc].connections[i].id == end) {					//Checks if next node is the end
-					//console.log(path);
 					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
 						fastestPath = path.slice();											//Copies current path into the global variable fastest path
-						//console.log("End" + fastestPath);
 						path.splice(-1,1);
 					}
 					else if (path.length <= fastestPath.length) {				//Checks if a new path to the end is faster than the current one
 							fastestPath = path.slice();										//Copies current path into the global variable fastest path
-							//console.log(fastestPath);
 							path.splice(-1,1);
 					}
 				}
 				else {																								//If next node isn't the destination then...
 					loc = nodes[loc].connections[i].id;								//Set new location to the next node
 					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
-						//if (path.length > )	{													  //If the path array holds 2 or more items
 							path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
-							//console.log(path);
 							loc = path[path.length-1]; 										  //New location is the previous node
-							//}
-							//else {
-								//loc = start;																		//If the path array has backtracked to the start
-								//console.log("Else" + path);
-								//path.splice(-1,1);
-							//}
 						}
 					}
 				}
@@ -393,4 +376,27 @@ function findPath()
 			}
 
 			return compassDirection;
+}
+
+function dropDownBoxStartValue()
+{
+	var URL = encodeURIComponent(startAtName(dropdownboxstart.value));
+	return URL;
+}
+
+function dropDownBoxEndValue()
+{
+	return encodeURIComponent(startAtName(dropdownboxend.value));
+}
+
+function setDisabledValue()
+{
+	return encodeURIComponent(disabled.checked);
+}
+
+function setValuesForBoxes()
+{
+	document.getElementById("start").value = dropDownBoxStartValue();
+	document.getElementById("end").value = dropDownBoxEndValue();
+	document.getElementById("disabled").value = setDisabledValue();
 }

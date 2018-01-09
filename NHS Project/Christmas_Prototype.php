@@ -57,8 +57,11 @@
 
 		<br>
 		<form action="directions.html">
+			<input id="start" name="start" type="hidden" value="" />
+			<input id="end" name="end" type="hidden" value="" />
+			<input id="disabled" name="disabled" type="hidden" value=""/>
 		<div class="findPath">
-		<button class = "button" onclick = "findPath()"> Find Path </button>
+		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
 		</div>
 		</form>
 		</div>

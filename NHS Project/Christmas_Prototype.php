@@ -7,7 +7,6 @@
 	<link href="css/tablet.css" media="only screen and (min-width:700px) and (max-width:1199px)" rel= "stylesheet" type="text/css">
 	<link href="css/desktop.css" media="only screen and (min-width:1200px)" rel="stylesheet" type="text/css">
 	<title> NHS WayFinder </title>
-	<link href="css/desktop.css" media="only screen and (min-width:601px)" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -37,31 +36,34 @@
 		<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
 	</div>
 	</div>
-<br>
 		<div class = "box">
 		<h2>Select your destination:</h2>
 		<div class = "dropDown">
 		<select name = "dropdownboxend" id = dropdownboxend></select>
 	</div>
 	</div>
+
 	<br>
 		<div class = "box">
 		<form action="">
 		<h2>Would you like to avoid staircases?</h2> <input type="checkbox" name = "disabled" checked=false>
 		</form>
-		</div>
+		</div>	
 
-		<div class="box">
+<div class="box">
+
+<div class="findPath">
 		<form action="directions.html">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
 			<input id="disabled" name="disabled" type="hidden" value=""/>
-		<div class="findPath">
+
 		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
-		</div>
+
+		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
 		</form>
 		</div>
-
+	</div>
 </div>
 </body>
 

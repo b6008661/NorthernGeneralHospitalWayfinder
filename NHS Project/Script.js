@@ -192,7 +192,7 @@ function addToList(dropDown,i)
 
 var fastestPath = new Array();
 
-/*function findPath()
+function findPath()
 {
 	var end = startAtName(dropdownboxend.value);
 	var start = startAtName(dropdownboxstart.value);
@@ -376,7 +376,7 @@ var fastestPath = new Array();
 			}
 
 			return compassDirection;
-}*/
+}
 
 function dropDownBoxStartValue()
 {

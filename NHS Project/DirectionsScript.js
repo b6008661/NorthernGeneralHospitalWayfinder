@@ -21,13 +21,8 @@ context.lineTo(578, 100);
 // line color - self explanatory
       context.strokeStyle = "black";
       context.stroke();
-
-
       findPath(getParameterByName("start"),getParameterByName("end"));
-
 }
-
-
 
 var E = "Entrance/Exit";
 var M = "Medical Care";

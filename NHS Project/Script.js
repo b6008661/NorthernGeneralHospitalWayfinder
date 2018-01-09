@@ -114,6 +114,7 @@ window.onload = function()
 	populateDropDownEnd();
 	selectDefaultStart();
 	document.getElementById("disabled").checked = false;
+	loadPreviousLocation();
 }
 
 function getParameterByName(name, url) {
@@ -124,6 +125,37 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function loadPreviousLocation()
+{
+	var previousLocation = localStorage.getItem("previousLocation");
+	var dropdownboxend = document.getElementById("dropdownboxend");
+	var locationIndex = getIndexOfLocationInDropdownList(dropdownboxend,previousLocation);
+	dropdownboxend.selectedIndex = locationIndex;
+}
+
+function getIndexOfLocationInDropdownList(dropdown, location)
+{
+	var index = 0;
+	var found = false;
+	while ((!found) && (index < dropdown.length))
+	{
+		if (location == dropdown.options[index].text)
+		{
+			found = true;
+			index--;
+		}
+		index++;
+	}
+	if (found)
+	{
+		return index;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 function selectDefaultStart()
@@ -168,6 +200,7 @@ function findPath()
 {
 	var end = startAtName(dropdownboxend.value);
 	var start = startAtName(dropdownboxstart.value);
+	localStorage.setItem("previousLocation",dropdownboxstart.options[dropdownboxstart.selectedIndex].text);
   var path = new Array();
 	fastestPath = new Array();
 	var loc = start;

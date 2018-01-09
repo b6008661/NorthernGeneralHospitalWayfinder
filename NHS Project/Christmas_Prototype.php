@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0,initial-scale=1">
 	<title> NHS WayFinder </title>
 	<link rel = "stylesheet" type="text/css" href="css/StyleSheet.css">
-	<link href="css/desktop.css" media="only screen and (min-width:601px)" rel="stylesheet" type="text/css">
+	<link href="css/tablet.css" media="only screen and (min-width:700px) and (max-width:1199px)" rel= "stylesheet" type="text/css"
+	<link href="css/desktop.css" media="only screen and (min-width:1200px)" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -14,7 +15,6 @@
 	<img src="images/nhs_logo.jpg" alt="nhs logo"><a href="https://www.nhs.uk/pages/home.aspx"></a>
 <div class="headerText">
 	<h1>Northern General Hospital</h1>
-	<h1>Find your way</h1>
 </div>
 	<form>
 		<input type= "text" name = "location" value="Enter something here ">

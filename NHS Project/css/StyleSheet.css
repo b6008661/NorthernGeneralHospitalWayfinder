@@ -1,13 +1,16 @@
-
+html {
+	height: 100%;
+}
 body {
 	font-family : "Arial", "helvatica", sans-serif;
 	padding:0;
 	margin:0;
 	width: 100%;
-	background-color: #0058b8;
+	background-color: #005eb8;
+	font-size: 25px;
 }
 .container {
-	background-color: #0058b8;
+	background-color: #005eb8;
 	display: flex;
 	flex-direction: column;
 	align-content: center;
@@ -20,7 +23,7 @@ header {
 	width:85%;
 	padding: 20px;
 	margin: 10px;
-	background-color: #0058b8;
+	background-color: #005eb8;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -34,6 +37,9 @@ header>img {
 	height:18%;
 	text-align: center;
 	color: #fff;
+}
+.break {
+	display: none;
 }
 form {
 	display: inline;
@@ -51,7 +57,7 @@ input[type=submit] {
 	background-color:#fff;
 	border: none;
 	font-size: 15px;
-	color: #0058b8;
+	color: #005eb8;
 	float:right;
 }
 h1 {
@@ -59,7 +65,7 @@ h1 {
 }
 h2 {
 	text-align: center;
-	color: #0058b8;
+	color: #005eb8;
 	font-size: 10px;
 	padding: 0px;
 }
@@ -95,7 +101,7 @@ select {
 	position: relative;
 	width: 80%;
 	height: 10%;
-	background-color:#0058b8;
+	background-color:#005eb8;
 	border: none;
 	font-size: 20px;
 	color: #fff;

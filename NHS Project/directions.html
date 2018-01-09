@@ -19,11 +19,11 @@
 
   <canvas id = "drawing" height = "460" width = "819"></canvas>
 		<script>
-			
+
 			window.onload = function() { 							//load function as soon as the page loads
 			var drawing = document.getElementById("drawing");		//select canvas id
 			var context = drawing.getContext('2d');					//set context
-			
+
 			var imageObj = new Image();								//new image
 
 			imageObj.onload=function()								//function to load image first
@@ -32,7 +32,7 @@
 			};
 
 			imageObj.src = 'HospitalFloorPlanBasic.png';			//image selection
-			
+
 			context.globalCompositeOperation = 'destination-over';	//composition selection to put arrow on top of image
             context.beginPath();									//start arrow
             context.moveTo(270, 270);								//start point

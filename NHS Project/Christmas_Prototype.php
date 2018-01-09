@@ -42,19 +42,21 @@
 		<select name = "dropdownboxend" id = dropdownboxend></select>
 	</div>
 	</div>
-		<form action="">
-		</form>
 
+<div class="box">
+
+<div class="findPath">
 		<form action="directions.html">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
 			<input id="disabled" name="disabled" type="hidden" value=""/>
-		<div class="findPath">
-		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
-		</div>
+
+		<!--<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>-->
+
 		<button class = "button" onclick = "findPath()"> Find Path </button>
 		</form>
 		</div>
+	</div>
 </div>
 </body>
 

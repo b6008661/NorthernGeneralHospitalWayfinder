@@ -15,9 +15,34 @@
   	</form>
   </header>
 
+<!--image and arrow drawing -->
 
+  <canvas id = "drawing" height = "460" width = "819"></canvas>
+		<script>
+			window.onload = function() { 							//load function as soon as the page loads
+			var drawing = document.getElementById("drawing");		//select canvas id
+			var context = drawing.getContext('2d');					//set context
+			
+			var imageObj = new Image();								//new image
 
+			imageObj.onload=function()								//function to load image first
+			{
+			context.drawImage(imageObj,100, 20, 500,500);			//draw image with coords to start and size
 
+			};
+
+			imageObj.src = 'HospitalFloorPlanBasic.png';			//image selection
+			
+			context.globalCompositeOperation = 'destination-over';	//composition selection to put arrow on top of image
+            context.beginPath();									//start arrow
+            context.moveTo(100, 50);								//start point
+            context.lineTo(160, 420);								//end point
+            context.lineWidth = 10;									//line width
+            														// line color - self explanatory
+            context.strokeStyle = "black";
+            context.stroke();
+			}
+		</script>
 
 </body>
 </html>

@@ -174,31 +174,38 @@ function selectDefaultStart()
 }
 
 function populateDropDownStart()
-{
-	for (var i = 0; i < nodes.length; i++) {
-		if (nodes[i].type == Q)
+{	
+	for(var i =0; i<obj.length; i++)
+		{
 			addToList(dropdownboxstart, i);
-	}
+		}
+	// for (var i = 0; i < obj.length; i++) {
+	// //	if (nodes[i].type == Q)
+	// 	//	addToList(dropdownboxstart, i);
+	// }
 
-	for (var i = 0; i < nodes.length; i++) {
-		if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
-			addToList(dropdownboxstart, i);
-	}
+	// for (var i = 0; i < nodes.length; i++) {
+	// 	if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+	// 		addToList(dropdownboxstart, i);
+	// }
 }
 
 function populateDropDownEnd()
-{
-	for (var i = 0; i < nodes.length; i++) {
-		if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+{	for(var i =0; i<obj.length; i++)
+		{
 			addToList(dropdownboxend, i);
-	}
+		}
+	// for (var i = 0; i < nodes.length; i++) {
+	// 	if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+	// 		addToList(dropdownboxend, i);
+	// }
 }
 
 function addToList(dropDown,i)
 {
 	var newDropDownOption = document.createElement("OPTION");
-	newDropDownOption.text = nodes[i].name;
-	newDropDownOption.value = nodes[i].name;
+	newDropDownOption.text = obj[i].NodeID;
+	newDropDownOption.value = obj[i].NodeID;
 	dropDown.options.add(newDropDownOption);
 }
 

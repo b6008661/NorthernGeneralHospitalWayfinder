@@ -22,27 +22,41 @@ require('include/conn.inc.php');
 
 
 <?php
-$numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
+// $numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
+// $stmt = $pdo->query($numberOfNodes);
+// while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+// {
+// $nodes = array(
+// 	'NodeID'=>$row['NodeID'],
+// 	'NodeType' =>$row ['NodeType'],
+// 	'Floor'=>$row ['Floor']);
+// }
+?>
+
+
+<?php
+$nodes = array();
+$numberOfNodes = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
 $stmt = $pdo->query($numberOfNodes);
+
 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-$nodes = array(
-	'NodeID'=>$row['NodeID'],
-	'NodeType' =>$row ['NodeType'],
-	'Floor'=>$row ['Floor']);
+$nodestest = array('NodeID'=>$row['NodeID']);
+array_push($nodes, $nodestest);
 }
+
+
 ?>
 
 <?php
 $nodes_json = json_encode($nodes);
- 
 echo $nodes_json; 
 ?>
 
 <script type="text/javascript">
 
 var obj = JSON.parse('<?php echo $nodes_json; ?>');
-alert("Output" + obj.NodeID);
+//alert("Output" + obj.NodeID);
 console.log(obj);
 </script>
 

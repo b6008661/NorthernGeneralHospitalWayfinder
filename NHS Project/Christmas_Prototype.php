@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 1);
+require('include/conn.inc.php'); 
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -48,43 +53,47 @@
 	</div>
 	</div>
 
-<<<<<<< HEAD
 <div class="col-sm-3">
-=======
-	<br>
-		<div class = "box">
-		<form action="">
-		<h2>Would you like to avoid staircases?</h2> <input type="checkbox" name = "disabled" checked=false>
-		</form>
-		</div>
-
-<div class="box">
-
->>>>>>> 97bdffbeb4e4a10c05e1dbd8ab7edac5f1551e89
 <div class="findPath">
 		<form action="directions.php">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
 			<input id="disabled" name="disabled" type="hidden" value=""/>
-<<<<<<< HEAD
 </div>
-		<!--<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>-->
-<div class="col-md-4">
-		<button class = "button" onclick = "findPath()"> Find Path </button>
-=======
-
 		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
-
+<div class="col-md-4">
 		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
->>>>>>> 97bdffbeb4e4a10c05e1dbd8ab7edac5f1551e89
 		</form>
 		</div>
 	</div>
 </div>
 </div>
 </div>
+<?php
+$nodes = array();
+$numberOfNodes = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
+$stmt = $pdo->query($numberOfNodes);
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+{
+$nodestest = array('NodeID'=>$row['NodeID']);
+array_push($nodes, $nodestest);
+}
+?>
+
+<?php
+$nodes_json = json_encode($nodes);
+?>
+
+<script type="text/javascript">
+
+var obj = JSON.parse('<?php echo $nodes_json; ?>');
+console.log(obj);
+</script>
 </body>
 
-<script src="Script.js"></script>
+<script src="Script.js">
+	
+</script>
 
 </html>

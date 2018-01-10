@@ -140,9 +140,11 @@ function getIndexOfLocationInDropdownList(dropdown, location)
 		if (location == dropdown.options[index].text)
 		{
 			found = true;
-			index--;
 		}
-		index++;
+		else
+		{
+			index++;
+		}
 	}
 	if (found)
 	{

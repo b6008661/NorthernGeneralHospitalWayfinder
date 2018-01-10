@@ -62,7 +62,7 @@
 
 >>>>>>> 97bdffbeb4e4a10c05e1dbd8ab7edac5f1551e89
 <div class="findPath">
-		<form action="directions.html">
+		<form action="directions.php">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
 			<input id="disabled" name="disabled" type="hidden" value=""/>

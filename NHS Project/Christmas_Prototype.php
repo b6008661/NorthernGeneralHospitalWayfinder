@@ -48,16 +48,35 @@
 	</div>
 	</div>
 
+<<<<<<< HEAD
 <div class="col-sm-3">
+=======
+	<br>
+		<div class = "box">
+		<form action="">
+		<h2>Would you like to avoid staircases?</h2> <input type="checkbox" name = "disabled" checked=false>
+		</form>
+		</div>
+
+<div class="box">
+
+>>>>>>> 97bdffbeb4e4a10c05e1dbd8ab7edac5f1551e89
 <div class="findPath">
 		<form action="directions.html">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
 			<input id="disabled" name="disabled" type="hidden" value=""/>
+<<<<<<< HEAD
 </div>
 		<!--<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>-->
 <div class="col-md-4">
 		<button class = "button" onclick = "findPath()"> Find Path </button>
+=======
+
+		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
+
+		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
+>>>>>>> 97bdffbeb4e4a10c05e1dbd8ab7edac5f1551e89
 		</form>
 		</div>
 	</div>

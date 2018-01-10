@@ -1,3 +1,10 @@
+<?php
+include('include/conn.inc.php');
+?>
+
+
+
+
 window.onload = function() { 							//load function as soon as the page loads
 var drawing = document.getElementById("drawing");		//select canvas id
 var context = drawing.getContext('2d');					//set context
@@ -21,13 +28,16 @@ context.lineTo(578, 100);
 // line color - self explanatory
       context.strokeStyle = "black";
       context.stroke();
-
-
       findPath(getParameterByName("start"),getParameterByName("end"));
 
+
+      function populateNodeArray(numberOfNodes)
+      {
+      	for (var i = 0; i < numberOfNodes; i++) {
+      		nodes.push()
+      	}
+      }
 }
-
-
 
 var E = "Entrance/Exit";
 var M = "Medical Care";

@@ -106,6 +106,7 @@ function startAtName(enterName)
 
 window.onload = function()
 {
+	alert("Welcome to the NHS wayfinding system! Please select your starting location from the first drop-down box below, along with your destination in the desatination box below that.");
 	populateDropDownStart();
 	populateDropDownEnd();
 	selectDefaultStart();

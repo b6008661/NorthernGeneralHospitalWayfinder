@@ -6,14 +6,24 @@ var S = "Stairs";
 var L = "Lift";
 var C = "Cafe";
 
-var nodeClass = function(id, name, disabled, type, facing)
+var nodeClass = function(id, name, disabled, type, facing, floor)
 {
 	this.id = id;
 	this.name = name;
 	this.connections = new Array();
 	this.disabled = disabled;
 	this.type = type;
-	this.facing = facing;
+	this.facing = facing
+	this.floor = floor;
+}
+
+var nodes = new Array;
+
+function populateNodeArray(numberOfNodes)
+{
+	for (var i = 0; i < numberOfNodes; i++) {
+		nodes.push()
+	}
 }
 
 var connect = function(idNumber, direction)
@@ -26,7 +36,6 @@ var connect = function(idNumber, direction)
 
 i=0;
 
-var nodes = new Array;
 
 var entrance = new nodeClass(i++,"West Entrance",true, E, "Null");
 var outpatients = new nodeClass(i++,"Outpatients",true, M, "Null");

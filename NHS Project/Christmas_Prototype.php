@@ -48,7 +48,7 @@
 		<form action="">
 		<h2>Would you like to avoid staircases?</h2> <input type="checkbox" name = "disabled" checked=false>
 		</form>
-		</div>	
+		</div>
 
 <div class="box">
 

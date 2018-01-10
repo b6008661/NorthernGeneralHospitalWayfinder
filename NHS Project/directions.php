@@ -1,17 +1,13 @@
 <?php
 ini_set('display_errors', 1);
-include('include/conn.inc.php');
-$sqlNumberOfNodes = "SELECT(*) FROM Cantor_Nodes.ThirdFloor";
-$nodeResults = $mysql -> query($sqlNumberOfNodes);
-echo $nodeResults['NodeID'];
+require('include/conn.inc.php'); 
 ?>
 
-
+<!DOCTYPE html>
 <html>
 <head>
 	<meta name ="viewport" content="width-device-width, initial-scale=1">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link href="css/custom.css" rel="stylesheet" type="text/css">
+	<link rel = "stylesheet" type="text/css" href="css/StyleSheet.css">
 	<title> NHS WayFinder </title>
 </head>
 
@@ -28,15 +24,31 @@ echo $nodeResults['NodeID'];
 <?php
 $numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
 $nodeResults = $pdo->query($numberOfNodes);
-?>
-
-<?php
 while($row = $nodeResults->fetchObject())
 {
 echo $row->NodeID;
 }
 ?>
-<!--image and arrow drawing -->
+
+
+
+
+
+<!--<script> 
+var numberOfRows = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
+$nodeResults = $pdo->query(numberOfRows);
+while($row = $nodeResults->fetchObject())
+{
+console.log(numberOfRows)
+}
+</script>
+
+<!--image and arrow drawing 
+while($row = $nodeResults->fetchObject())
+{
+echo $row->NodeID;
+}
+-->
 
   <canvas id = "drawing" height = "460" width = "819"></canvas>
 

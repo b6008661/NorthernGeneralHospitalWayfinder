@@ -1,9 +1,15 @@
 <?php
+<<<<<<< HEAD
 include('include/conn.inc.php');
 $sqlNumberOfNodes = "SELECT(*) FROM Cantor_Nodes.ThirdFloor";
 $nodeResults = $mysql -> query($sqlNumberOfNodes);
 echo $nodeResults['NodeID'];
  ?>
+=======
+ini_set('display_errors', 1);
+require('include/conn.inc.php'); 
+?>
+>>>>>>> 552607ede9dd17cb18e6b68fdc712269ec8a2c8d
 
 <html>
 <head>
@@ -22,6 +28,18 @@ echo $nodeResults['NodeID'];
   	</form>
   </header>
 
+
+<?php
+$numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
+$nodeResults = $pdo->query($numberOfNodes);
+?>
+
+<?php
+while($row = $nodeResults->fetchObject())
+{
+echo $row->NodeID;
+}
+?>
 <!--image and arrow drawing -->
 
   <canvas id = "drawing" height = "460" width = "819"></canvas>

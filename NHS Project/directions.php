@@ -23,38 +23,31 @@ require('include/conn.inc.php');
 
 <?php
 $numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
-$nodeResults = $pdo->query($numberOfNodes);
-while($row = $nodeResults->fetchObject())
+$stmt = $pdo->query($numberOfNodes);
+while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-echo $row->NodeID;
+$nodes = array(
+	'NodeID'=>$row['NodeID'],
+	'NodeType' =>$row ['NodeType'],
+	'Floor'=>$row ['Floor']);
 }
 ?>
 
+<?php
+$nodes_json = json_encode($nodes);
+ 
+echo $nodes_json; 
+?>
 
+<script type="text/javascript">
 
-
-
-<!--<script> 
-var numberOfRows = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
-$nodeResults = $pdo->query(numberOfRows);
-while($row = $nodeResults->fetchObject())
-{
-console.log(numberOfRows)
-}
+var obj = JSON.parse('<?php echo $nodes_json; ?>');
+alert("Output" + obj.NodeID);
+console.log(obj);
 </script>
 
-<!--image and arrow drawing 
-while($row = $nodeResults->fetchObject())
-{
-echo $row->NodeID;
-}
--->
 
   <canvas id = "drawing" height = "460" width = "819"></canvas>
-
 			<script src="DirectionsScript.js"></script>
-
-
-
 </body>
 </html>

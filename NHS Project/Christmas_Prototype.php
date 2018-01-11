@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-require('include/conn.inc.php');
+require('include/conn.inc.php'); 
 ?>
 
 <!DOCTYPE html>
@@ -38,45 +38,45 @@ require('include/conn.inc.php');
 	  -->
 		<div class="container-fluid">
 		<div class = "row">
-			<div class = "col-sm-4">
-			<h2>Select your starting location:</h2>
-				<div class = "dropDown">
-				<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
-				</div>
-			</div>
+			<div class = "col-sm-3">
+				<div class="box">
+		<h2>Select your starting location:</h2>
+		<div class = "dropDown">
+		<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
 	</div>
-		<div class = "col-sm-4">
+	</div>
+	</div>
+		<div class = "col-sm-3">
 		<h2>Select your destination:</h2>
 		<div class = "dropDown">
 		<select name = "dropdownboxend" id = "dropdownboxend"></select>
 	</div>
 	</div>
 
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="findPath">
-	<form action="">
-	<h2>Would you like to avoid staircases?</h2><input type="checkbox" name = "disabled" checked=false>
-	</form>
 		<form action="directions.php">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
 			<input id="disabled" name="disabled" type="hidden" value=""/>
 </div>
 		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
+<div class="col-md-4">
 		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
 		</form>
 		</div>
+	</div>
 </div>
 </div>
-
+</div>
 <?php
 $nodes = array();
-$numberOfNodes = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
+$numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
 $stmt = $pdo->query($numberOfNodes);
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-$nodestest = array('NodeID'=>$row['NodeID']);
+$nodestest = array('name'=>$row['Name']);
 array_push($nodes, $nodestest);
 }
 ?>
@@ -93,7 +93,7 @@ console.log(obj);
 </body>
 
 <script src="Script.js">
-
+	
 </script>
 
 </html>

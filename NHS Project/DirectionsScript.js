@@ -1,8 +1,3 @@
-
-
-
-
-
 window.onload = function() { 							//load function as soon as the page loads
 var drawing = document.getElementById("drawing");		//select canvas id
 var context = drawing.getContext('2d');					//set context
@@ -25,27 +20,25 @@ context.lineTo(578, 100);
       context.lineWidth = 3;									//line width
 // line color - self explanatory
       context.strokeStyle = "black";
-      context.stroke();
+	  context.stroke();
+	  
+
+
+
+	  //START OF ALGORITHM
       findPath(getParameterByName("start"),getParameterByName("end"));
-
-
-      function populateNodeArray(numberOfNodes)
-      {
-      	for (var i = 0; i < numberOfNodes; i++) {
-      		nodes.push()
-      	}
-      }
 }
 
 var E = "Entrance/Exit";
-var M = "Medical Care";
+var R = "Room";
 var Q = "QR Code";
-var H = "Hallway";
+var I = "Intersection";
 var S = "Stairs";
 var L = "Lift";
 var C = "Cafe";
+var T = "Toilet";
 
-var nodeClass = function(id, name, disabled, type, facing)
+/*var nodeClass = function(id, name, disabled, type, facing)
 {
 	this.id = id;
 	this.name = name;
@@ -65,7 +58,7 @@ var connect = function(idNumber, direction)
 
 i=0;
 
-var nodes = new Array;
+//var nodes = new Array;
 
 var entrance = new nodeClass(i++,"West Entrance",true, E, "Null");
 var outpatients = new nodeClass(i++,"Outpatients",true, M, "Null");
@@ -104,6 +97,8 @@ nodes.push(stairsNorth);
 nodes.push(qrEast);
 nodes.push(liftEast);
 nodes.push(cafeEast);
+
+*/
 
 function startAtId(idNumber)
 {
@@ -168,7 +163,7 @@ function populateDropDownStart()
 	}
 
 	for (var i = 0; i < nodes.length; i++) {
-		if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+		if (nodes[i].type == E || nodes[i].type == R || nodes[i].type == C)
 			addToList(dropdownboxstart, i);
 	}
 }
@@ -176,7 +171,7 @@ function populateDropDownStart()
 function populateDropDownEnd()
 {
 	for (var i = 0; i < nodes.length; i++) {
-		if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+		if (nodes[i].type == E || nodes[i].type == R || nodes[i].type == C)
 			addToList(dropdownboxend, i);
 	}
 }
@@ -253,7 +248,7 @@ function findPath(start, end)
 
 							if (nodes[fastestPath[i]].type == L)
 								locationName = "the lifts";
-							if (nodes[fastestPath[i]].type == H)
+							if (nodes[fastestPath[i]].type == I)
 								locationName = "the intersection";
 
 

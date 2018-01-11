@@ -204,8 +204,8 @@ function populateDropDownEnd()
 function addToList(dropDown,i)
 {
 	var newDropDownOption = document.createElement("OPTION");
-	newDropDownOption.text = obj[i].NodeID;
-	newDropDownOption.value = obj[i].NodeID;
+	newDropDownOption.text = obj[i].name;
+	newDropDownOption.value = obj[i].name;
 	dropDown.options.add(newDropDownOption);
 }
 

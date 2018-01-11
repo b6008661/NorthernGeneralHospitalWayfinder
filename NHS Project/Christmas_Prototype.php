@@ -19,13 +19,13 @@ require('include/conn.inc.php');
 <body>
 <header>
 	<img src="images/nhs_logo.jpg" alt="nhs logo"><a href="https://www.nhs.uk/pages/home.aspx"></a>
-<div class="headerText">
-	<h1>Northern General Hospital</h1>
-</div>
-	<form>
-		<input type= "text" name = "location" value="">
-		<input type="submit" value="Search">
-	</form>
+	<h1 class="headerText">Northern General Hospital</h1>
+
+	<input type=text size=12 placeholder="Tracking Code" class=qrcode-text
+	><label class=qrcode-text-btn>
+		<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
+	</label>
+<input type=button value="Go" disabled>
 
 </header>
 
@@ -39,11 +39,12 @@ require('include/conn.inc.php');
 		<div class="container-fluid">
 		<div class = "row">
 			<div class = "col-sm-4">
-			<h2>Select your starting location:</h2>
-				<div class = "dropDown">
-				<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
-				</div>
-			</div>
+				<div class="box">
+		<h2>Select your starting location:</h2>
+		<div class = "dropDown">
+		<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
+	</div>
+	</div>
 	</div>
 		<div class = "col-sm-4">
 		<h2>Select your destination:</h2>
@@ -53,30 +54,28 @@ require('include/conn.inc.php');
 	</div>
 
 <div class="col-sm-4">
+	<h2>Would you like to avoid staircases?</h2>
 <div class="findPath">
-	<form action="">
-	<h2>Would you like to avoid staircases?</h2><input type="checkbox" name = "disabled" checked=false>
-	</form>
 		<form action="directions.php">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
-			<input id="disabled" name="disabled" type="hidden" value=""/>
+			<input id="disabled" name="disabled" type="checkbox" value="" checked=false/>
 </div>
 		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
 		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
 		</form>
 		</div>
-</div>
+	</div>
 </div>
 
 <?php
 $nodes = array();
-$numberOfNodes = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
+$numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
 $stmt = $pdo->query($numberOfNodes);
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-$nodestest = array('NodeID'=>$row['NodeID']);
+$nodestest = array('name'=>$row['Name']);
 array_push($nodes, $nodestest);
 }
 ?>
@@ -93,7 +92,8 @@ console.log(obj);
 </body>
 
 <script src="Script.js">
-
+</script>
+<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
 </script>
 
 </html>

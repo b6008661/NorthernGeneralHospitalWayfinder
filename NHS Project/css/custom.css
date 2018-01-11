@@ -32,21 +32,30 @@ h1 {
   font-size: 50px;
   font-size: 4.5vw;
 }
-input[type=text] {
-	padding: 8px 20px;
-	float:left;
-	height: 80%;
-	width: 60%;
-  font-size: 15px;
+
+.qrcode-text {
+  padding-right: 1.7em;
+  margin-right: 0;
+  vertical-align: middle;
 }
-input[type=submit] {
-	width: 32%;
-	height: 70%;
-	background-color:#fff;
-	border: none;
-	font-size: 15px;
-	color: #005eb8;
-	float:right;
+.qrcode-text-btn {
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  background: url("http://homepages.shu.ac.uk/~b6008661/NHS%20Project/images/qr_icon.svg") 50% 50% no-repeat;
+  cursor: pointer;
+}
+.qrcode-text-btn > input[type=file] {
+  position: absolute;
+  overflow: hidden;
+  width: 2px;
+  height: 2px;
+  opacity: 0;
+}
+.qrcode-text + .qrcode-text-btn {
+  width: 1.7em;
+  margin-left: -1.7em;
+  vertical-align: middle;
 }
 .col-sm-4{
 	background-color: #ffffff;

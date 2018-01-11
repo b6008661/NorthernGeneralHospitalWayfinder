@@ -20,6 +20,13 @@ require('include/conn.inc.php');
 <header>
 	<img src="images/nhs_logo.jpg" alt="nhs logo"><a href="https://www.nhs.uk/pages/home.aspx"></a>
 	<h1 class="headerText">Northern General Hospital</h1>
+
+	<input type=text size=12 placeholder="Tracking Code" class=qrcode-text
+	><label class=qrcode-text-btn>
+		<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
+	</label>
+<input type=button value="Go" disabled>
+
 </header>
 
 		<!--<input type = "text" id = "inputbox" value = "">
@@ -85,7 +92,8 @@ console.log(obj);
 </body>
 
 <script src="Script.js">
-
+</script>
+<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
 </script>
 
 </html>

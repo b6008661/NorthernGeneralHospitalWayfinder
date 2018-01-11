@@ -1,3 +1,7 @@
+.container-fluid {
+  align-content: center;
+	width: 100%;
+}
 body {
 	font-family : "Arial", "helvatica", sans-serif;
 	width: 100%;
@@ -44,20 +48,20 @@ input[type=submit] {
 	color: #005eb8;
 	float:right;
 }
-.col-sm-3{
+.col-sm-4{
 	background-color: #ffffff;
-  margin: 5px;
   text-align: center;
+  border: 5px solid #005eb8;
 }
-/*.box  {
-	height: 30%;
-	width: 50%;
-	text-align: center;
-}*/
+.row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 h2 {
 	text-align: center;
 	color: #005eb8;
-	font-size: 10px;
+	font-size: 120%;
 	padding: 0px;
 }
 input[type=checkbox] {

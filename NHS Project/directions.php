@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-require('include/conn.inc.php'); 
+require('include/conn.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,8 @@ require('include/conn.inc.php');
   		<input type="submit" value="Submit">
   	</form>
   </header>
+
+	
 
 
 <?php
@@ -50,7 +52,7 @@ array_push($nodes, $nodestest);
 
 <?php
 $nodes_json = json_encode($nodes);
-echo $nodes_json; 
+echo $nodes_json;
 ?>
 
 <script type="text/javascript">

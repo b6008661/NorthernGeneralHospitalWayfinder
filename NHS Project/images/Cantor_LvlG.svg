@@ -66,7 +66,6 @@
 <line id="Node_9004_TO_Room_9004" class="linedefault" x1="150" y1="440" x2="175" y2="440"/>
 <line id="Node_9004_TO_Node_9006" class="linedefault" x1="150" y1="440" x2="150" y2="450"/>
 <line id="Node_9006_TO_Room_9006" class="linedefault" x1="150" y1="450" x2="95" y2="450"/>
-<line id="Node_9006_TO_Room_9006_1_" class="linedefault" x1="150" y1="450" x2="95" y2="450"/>
 <line id="Node_9006_TO_Node_9005" class="linedefault" x1="150" y1="450" x2="150" y2="490"/>
 <line id="Node_9005_TO_Room_9005" class="linedefault" x1="150" y1="450" x2="150" y2="505"/>
 </svg>

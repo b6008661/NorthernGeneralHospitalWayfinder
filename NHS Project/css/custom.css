@@ -81,3 +81,11 @@ input[type=checkbox] {
 	font-size: 15px;
 	height: auto;
 }
+#cantor3{
+	position: relative;
+	background-color: #ffffff;
+  text-align: center;
+  border: 5px solid #005eb8;
+	width: 40%;
+	height: 60%;
+}

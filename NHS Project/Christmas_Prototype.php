@@ -40,10 +40,10 @@ require('include/conn.inc.php');
 		<div class = "row">
 			<div class = "col-sm-4">
 			<h2>Select your starting location:</h2>
-			<div class = "dropDown">
-			<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
-	</div>
-	</div>
+				<div class = "dropDown">
+				<select name = "dropdownboxstart" id= "dropdownboxstart"></select>
+				</div>
+			</div>
 	</div>
 		<div class = "col-sm-4">
 		<h2>Select your destination:</h2>
@@ -66,7 +66,7 @@ require('include/conn.inc.php');
 		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
 		</form>
 		</div>
-	</div>
+</div>
 </div>
 
 <?php

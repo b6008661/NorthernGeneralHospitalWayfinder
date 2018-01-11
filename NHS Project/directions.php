@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-require('include/conn.inc.php'); 
+require('include/conn.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -36,28 +36,71 @@ require('include/conn.inc.php');
 
 <?php
 $nodes = array();
+$multinodes = array();
+
 $numberOfNodes = "SELECT NodeID FROM Cantor_Nodes_ThirdFloor";
 $stmt = $pdo->query($numberOfNodes);
 
-while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-{
-$nodestest = array('NodeID'=>$row['NodeID']);
-array_push($nodes, $nodestest);
-}
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+	$nodestest = array('NodeID'=>$row['NodeID']);
+	array_push($nodes, $nodestest);
+	}
+	array_push($multinodes, $nodes);
+	$nodes = array();
 
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+	$nodestest = array('NodeType'=>$row['NodeType']);
+	array_push($nodes, $nodestest);
+	}
+	array_push($multinodes, $nodes);
+	$nodes = array();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+	$nodestest = array('Floor'=>$row['Floor']);
+	array_push($nodes, $nodestest);
+	}
+	array_push($multinodes, $nodes);
+	$nodes = array();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+	$nodestest = array('Disabled'=>$row['Disabled']);
+	array_push($nodes, $nodestest);
+	}
+	array_push($multinodes, $nodes);
+	$nodes = array();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+	$nodestest = array('Facing'=>$row['Facing']);
+	array_push($nodes, $nodestest);
+	}
+	array_push($multinodes, $nodes);
+	$nodes = array();
+
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+	$nodestest = array('ConnectionID'=>$row['ConnectionID']);
+	array_push($nodes, $nodestest);
+	}
+	array_push($multinodes, $nodes);
+	$nodes = array();
 
 ?>
 
 <?php
-$nodes_json = json_encode($nodes);
-echo $nodes_json; 
+$multinodes_json = json_encode($multinodes);
+//echo $multinodes_json;
 ?>
 
 <script type="text/javascript">
 
-var obj = JSON.parse('<?php echo $nodes_json; ?>');
+var nodes = JSON.parse('<?php echo $multinodes_json; ?>');
 //alert("Output" + obj.NodeID);
-console.log(obj);
+console.log(nodes);
 </script>
 
 

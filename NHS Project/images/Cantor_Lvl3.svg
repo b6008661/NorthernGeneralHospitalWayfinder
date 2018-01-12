@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="cantor3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 500 700" style="enable-background:new 0 0 500 700;" xml:space="preserve">
 <style type="text/css">
 	.border{fill:none;stroke:#000000;stroke-width:3;}
@@ -38,56 +38,39 @@
 <rect id="Elevator_3-3" x="85" y="400" class="elevator" width="10" height="50"/>
 <rect x="85" y="70" class="blocked" width="10" height="20"/>
 <rect id="Room_3-3908" x="145" y="595" class="blocked" width="10" height="20"/>
-<line id="Door_3-5_TO_9314" class="linedefault" x1="120" y1="335" x2="120" y2="295"/>
 <line id="Intersection_3-9314_TO_Door_3-5" class="linedefault" x1="120" y1="335" x2="120" y2="295"/>
-<line id="Intersection_3-93149314_TO_9314" class="linedefault" x1="120" y1="295" x2="170" y2="295"/>
-<line id="Intersection_3-9314_TO_Intersection_3-9315" class="linedefault" x1="120" y1="295" x2="120" y2="260"/>
+<line id="Intersection_3-9314_TO_9314" class="linedefault" x1="120" y1="295" x2="170" y2="295"/>
 <line id="Intersection_3-9315_TO_Intersection_3-9314" class="linedefault" x1="120" y1="295" x2="120" y2="260"/>
 <line id="Intersection_3-9315_TO_9315" class="linedefault" x1="120" y1="260" x2="100" y2="260"/>
-<line id="Intersection_3-9315_TO_Intersection_3-9316" class="linedefault" x1="120" y1="260" x2="120" y2="240"/>
 <line id="Intersection_3-9316_TO_Intersection_3-9315" class="linedefault" x1="120" y1="260" x2="120" y2="240"/>
 <line id="Intersection_3-9316_TO_9316" class="linedefault" x1="120" y1="240" x2="140" y2="240"/>
-<line id="Intersection_3-9316_TO_Intersection_3-1" class="linedefault" x1="120" y1="240" x2="120" y2="145"/>
 <line id="Intersection_3-1_TO_Intersection_3-9316" class="linedefault" x1="120" y1="240" x2="120" y2="145"/>
-<line id="Intersection_3-1_TO_Intersection_3-9318" class="linedefault" x1="120" y1="145" x2="125" y2="40"/>
-<line id="Intersection_3-9318_TO_Intersection_3-1" class="linedefault" x1="120" y1="145" x2="125" y2="40"/>
+<line id="Intersection_3-9318_TO_Intersection_3-1" class="linedefault" x1="120" y1="145" x2="125" y2="50"/>
+<line id="Intersection_3-9318_TO_9318" class="linedefault" x1="125" y1="50" x2="125" y2="40"/>
 <line id="Intersection_3-1_TO_Toilet_Women_3-2" class="linedefault" x1="120" y1="145" x2="165" y2="195"/>
-<line id="Toilet_Women_3-2_TO_Intersection_3-1" class="linedefault" x1="120" y1="145" x2="165" y2="195"/>
 <line id="Toilet_Women_3-2_TO_Toilet_Disabled_3-2" class="linedefault" x1="165" y1="195" x2="165" y2="200"/>
-<line id="Toilet_Disabled_3-2_TO_Toilet_Women_3-2" class="linedefault" x1="165" y1="195" x2="165" y2="200"/>
 <line id="Intersection_3-1_TO_Intersection_3-9319" class="linedefault" x1="120" y1="145" x2="240" y2="150"/>
-<line id="Intersection_3-9319_TO_Intersection_3-1" class="linedefault" x1="120" y1="145" x2="240" y2="150"/>
 <line id="Intersection_3-9319_TO_9319" class="linedefault" x1="240" y1="150" x2="240" y2="130"/>
 <line id="Intersection_3-9319_TO_Intersection_3-9320" class="linedefault" x1="240" y1="150" x2="280" y2="150"/>
-<line id="Intersection_3-9320_TO_Intersection_3-9319" class="linedefault" x1="240" y1="150" x2="280" y2="150"/>
 <line id="Intersection_3-9320_TO_9320" class="linedefault" x1="280" y1="150" x2="280" y2="170"/>
 <line id="Intersection_3-9320_TO_Intersection_3-9321" class="linedefault" x1="280" y1="150" x2="310" y2="150"/>
-<line id="Intersection_3-9321_TO_Intersection_3-9320" class="linedefault" x1="280" y1="150" x2="310" y2="150"/>
 <line id="Intersection_3-9321_TO_9321" class="linedefault" x1="310" y1="150" x2="310" y2="130"/>
 <line id="Intersection_3-9321_TO_Intersection_3-9322" class="linedefault" x1="310" y1="150" x2="340" y2="150"/>
-<line id="Intersection_3-9322_TO_Intersection_3-9321" class="linedefault" x1="310" y1="150" x2="340" y2="150"/>
 <line id="Intersection_3-9322_TO_9322" class="linedefault" x1="340" y1="150" x2="340" y2="170"/>
 <line id="Intersection_3-9322_TO_Intersection_3-9324" class="linedefault" x1="340" y1="150" x2="380" y2="150"/>
-<line id="Intersection_3-9324_TO_Intersection_3-9322" class="linedefault" x1="340" y1="150" x2="380" y2="150"/>
 <line id="Intersection_3-9324_TO_9324" class="linedefault" x1="380" y1="150" x2="380" y2="170"/>
 <line id="Intersection_3-9324_TO_Door_3-4" class="linedefault" x1="380" y1="150" x2="410" y2="150"/>
-<line id="Door_3-4_TO_Intersection_3-9324" class="linedefault" x1="380" y1="150" x2="410" y2="150"/>
-<line id="Door_3-4_TO_Intersection_3-Elevator_3-3" class="linedefault" x1="120" y1="335" x2="120" y2="425"/>
-<line id="Intersection_3-Elevator_3-3_TO_Door_3-4" class="linedefault" x1="120" y1="335" x2="120" y2="425"/>
-<line id="Intersection_3-Elevator_3-3_TO_Elevator_3-3" class="linedefault" x1="120" y1="425" x2="100" y2="425"/>
-<line id="Intersection_3-Elevator_3-3_TO_Intersection_3-Stairs_3-3" class="linedefault" x1="120" y1="425" x2="120" y2="495"/>
-<line id="Intersection_3-Stairs_3-3_TO_Intersection_3-Elevator_3-3" class="linedefault" x1="120" y1="425" x2="120" y2="495"/>
-<line id="Intersection_3-Stairs_3-3_TO_Stairs_3-3" class="linedefault" x1="120" y1="495" x2="70" y2="495"/>
-<line id="Intersection_3-Stairs_3-3_TO_Intersection_3-2" class="linedefault" x1="120" y1="495" x2="120" y2="540"/>
-<line id="Intersection_3-2_TO_Intersection_3-Stairs_3-3" class="linedefault" x1="120" y1="495" x2="120" y2="540"/>
+
+<line id="Door_3-5_TO_Intersection_Elevator_3-3" class="linedefault" x1="120" y1="335" x2="120" y2="425"/>
+<line id="Intersection_Elevator_3-3_TO_Elevator_3-3" class="linedefault" x1="120" y1="425" x2="70" y2="425"/>
+<line id="Intersection_Elevator_3-3_TO_Intersection_Stairs_3-3" class="linedefault" x1="120" y1="425" x2="120" y2="495"/>
+<line id="Intersection_Stairs_3-3_TO_Stairs_3-3" class="linedefault" x1="120" y1="495" x2="70" y2="495"/>
+<line id="Intersection_Stairs_3-3_TO_Intersection_3-2" class="linedefault" x1="120" y1="495" x2="120" y2="540"/>
 <line id="Intersection_3-2_TO_Intersection_3-9310" class="linedefault" x1="120" y1="540" x2="120" y2="560"/>
-<line id="Intersection_3-9310_TO_3-9310" class="linedefault" x1="120" y1="560" x2="100" y2="560"/>
-<line id="Intersection_3-9310_TO_Intersection_3-9308" class="linedefault" x1="120" y1="560" x2="120" y2="605"/>
-<line id="Intersection_3-9308_TO_Intersection_3-9310" class="linedefault" x1="120" y1="560" x2="120" y2="605"/>
-<line id="Intersection_3-9308_TO_Intersection_3-9309" class="linedefault" x1="120" y1="605" x2="120" y2="620"/>
-<line id="Intersection_3-9309_TO_Intersection_3-9308" class="linedefault" x1="120" y1="605" x2="120" y2="620"/>
+<line id="Intersection_3-9310_TO_9310" class="linedefault" x1="120" y1="560" x2="100" y2="560"/>
+<line id="Intersection_3-9310_TO_Intersection_3-9309" class="linedefault" x1="120" y1="560" x2="120" y2="605"/>
+<line id="Intersection_3-9309_TO_9309" class="linedefault" x1="120" y1="605" x2="120" y2="620"/>
 <line id="Intersection_3-2_TO_Intersection_Toilet_Men_3-2" class="linedefault" x1="120" y1="540" x2="300" y2="540"/>
-<line id="Toilet_Men_3-2_TO_Intersection_3-2" class="linedefault" x1="120" y1="540" x2="300" y2="540"/>
-<line id="Toilet_Men_3-2_TO_Toilet_Men_3-2" class="linedefault" x1="300" y1="540" x2="300" y2="560"/>
-<line id="Toilet_Men_3-2_TO_Door_3-6" class="linedefault" x1="300" y1="540" x2="320" y2="540"/>
+<line id="Intersection_Toilet_Men_3-2_TO_Toilet_Men_3-2" class="linedefault" x1="300" y1="540" x2="300" y2="560"/>
+<line id="Intersection_Toilet_Men_3-2_TO_Door_3-6" class="linedefault" x1="300" y1="540" x2="320" y2="540"/>
 </svg>

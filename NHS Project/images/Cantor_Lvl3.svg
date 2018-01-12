@@ -73,4 +73,31 @@
 <line id="Intersection_3-2_TO_Intersection_Toilet_Men_3-2" class="linedefault" x1="120" y1="540" x2="300" y2="540"/>
 <line id="Intersection_Toilet_Men_3-2_TO_Toilet_Men_3-2" class="linedefault" x1="300" y1="540" x2="300" y2="560"/>
 <line id="Intersection_Toilet_Men_3-2_TO_Door_3-6" class="linedefault" x1="300" y1="540" x2="320" y2="540"/>
+
+<text x="112" y="20" fill="black" font-family="Verdana" font-size="10">9318</text>
+<text x="228" y="110" fill="black" font-family="Verdana" font-size="10">9319</text>
+<text x="298" y="110" fill="black" font-family="Verdana" font-size="10">9321</text>
+<text x="368" y="197" fill="black" font-family="Verdana" font-size="10">9324</text>
+<text x="327" y="197" fill="black" font-family="Verdana" font-size="10">9322</text>
+<text x="266" y="197" fill="black" font-family="Verdana" font-size="10">9320</text>
+<text x="266" y="197" fill="black" font-family="Verdana" font-size="10">9320</text>
+<text x="190" y="193" fill="black" font-family="Verdana" font-size="10">Womens
+	<tspan x="190" y="203">Toilets</tspan>
+</text>
+<text x="175" y="225" fill="black" font-family="Verdana" font-size="10">Disabled
+	<tspan x="175" y="235">Toilets</tspan>
+</text>
+<text x="160" y="250" fill="black" font-family="Verdana" font-size="10">9316</text>
+<text x="190" y="298" fill="black" font-family="Verdana" font-size="10">9314</text>
+<text x="50" y="265" fill="black" font-family="Verdana" font-size="10">9315</text>
+<text x="430" y="150" fill="black" font-family="Verdana" font-size="10">Door 3-4</text>
+<text x="98" y="322" fill="black" font-family="Verdana" font-size="10">Door 3-5</text>
+<text x="20" y="428" fill="black" font-family="Verdana" font-size="10">Elevator 3-3</text>
+<text x="30" y="500" fill="black" font-family="Verdana" font-size="10">Stairs 3-3</text>
+<text x="55" y="564" fill="black" font-family="Verdana" font-size="10">9310</text>
+<text x="106" y="648" fill="black" font-family="Verdana" font-size="10">9309</text>
+<text x="340" y="543" fill="black" font-family="Verdana" font-size="10">Door 3-6</text>
+<text x="288" y="588" fill="black" font-family="Verdana" font-size="10">Mens
+	<tspan x="288" y="598">Toilets</tspan>
+</text>
 </svg>

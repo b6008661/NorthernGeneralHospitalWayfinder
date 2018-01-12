@@ -35,6 +35,30 @@ require('include/conn.inc.php');
 
 
 <?php
+
+function arrayToObject($array) {
+    if (!is_array($array)) {
+        return $array;
+    }
+
+    $object = new stdClass();
+    if (is_array($array) && count($array) > 0) {
+        foreach ($array as $name=>$value) {
+            $name = strtolower(trim($name));
+            if (!empty($name)) {
+                $object->$name = arrayToObject($value);
+            }
+        }
+        return $object;
+    }
+    else {
+        return FALSE;
+    }
+
+	}
+
+
+
 $nodes = array();
 $multinodes = array();
 $connections = array();
@@ -44,64 +68,94 @@ $stmt = $pdo->query($numberOfNodes);
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 	{
-	$nodestest = array('id'=>$row['ID'] -1);
-	// $nodestest = $nodestest-1;
-	array_push($nodes, $nodestest);
-	$nodestest = array('name'=>$row['Name']);
-	array_push($nodes, $nodestest);
-	$nodestest = array('type'=>$row['NodeType']);
-	array_push($nodes, $nodestest);
-	$nodestest = array('floor'=>$row['Floor']);
-	array_push($nodes, $nodestest);
-	$nodestest = array('disabled'=>$row['Disabled']);
-	array_push($nodes, $nodestest);
-	$nodestest = array('facing'=>$row['Facing']);
-	array_push($nodes, $nodestest);
-	$nodestest = array('connections'=> $connections);
-	array_push($nodes, $nodestest);
+		$array = array(
+		'id'=>$row['ID'] -1,
+		'name'=>$row['Name'],
+		'floor'=>$row['Floor'],
+		'type' => $row['NodeType'],
+		'facing'=>$row['Facing'],
+		'connections'=> $connections
 
-	array_push($multinodes, $nodes);
-	$nodes = array();
+
+		);
+
+	array_push($multinodes,arrayToObject($array));
+
 	}
 
-	$connNode;
+	
 
 	 $connectionsTable = "SELECT * FROM Connections";
 	 $stmt = $pdo->query($connectionsTable);
-	for($i=0;$i<$numberOfNodes;$i++)
+	 
+
+	$connectionsarray = array();
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 	{
-		$conname = $multinodes[$i]->name;
-		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-		{
-
-			$numberOfConnections = 0;
-			$nodestest = array('name'=>$row['Name']);
-			if($conname == $nodestest)
-				{
-					$nodestest = array('direction'=>$row['Direction']);
-					array_push($multinodes[$numberOfConnections++]->connections, $nodestest);
-				}
-		}
+		$array = array(
+		'start'=>$row['Name'],
+		'direction'=>$row['Direction'],
+		'id'=>$row['End'],
+		'facing'=>$row['Facing'],
+		'line_name'=> $row['Line_Name'],
+		);
+		array_push($connectionsarray,arrayToObject($array));
 	}
-
-
-
+	
+	 $stmt = $pdo->query($connectionsTable);
+		$reverseconnectionsarray = array();
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+		$array = array(
+		'id'=>$row['Name'],
+		'direction'=>$row['Direction'],
+		'start'=>$row['End'],
+		'facing'=>$row['Facing'],
+		'line_name'=> $row['Line_Name'],
+		);
+		array_push($reverseconnectionsarray,arrayToObject($array));
+	}
 ?>
 
 <?php
 $multinodes_json = json_encode($multinodes);
-//echo $multinodes_json;
+$connectionsarray_json = json_encode($connectionsarray);
+$reverseconnectionsarray_json = json_encode($reverseconnectionsarray);
 ?>
 
 <script type="text/javascript">
 
 var nodes = JSON.parse('<?php echo $multinodes_json; ?>');
-//alert("Output" + obj.NodeID);
+
+
+var connectionsArray = JSON.parse('<?php echo $connectionsarray_json; ?>');
+
+var reverseconnectionsArray = JSON.parse('<?php echo $reverseconnectionsarray_json; ?>');
+console.log(connectionsArray);
+console.log( reverseconnectionsArray);
+
+
+for (i=0; i<nodes.length;i++)
+{
+	nodes[i].connections = [];
+}
+
+for (j=0; j<connectionsArray.length;j++)
+	for(i=0;i<nodes.length;i++)
+		if (nodes[i].name == connectionsArray[j].start)
+			nodes[i].connections.push(connectionsArray[j]);
+
+for (j=0; j<reverseconnectionsArray.length;j++)
+	for(i=0;i<nodes.length;i++)
+		if (nodes[i].name == reverseconnectionsArray[j].start)
+			nodes[i].connections.push(reverseconnectionsArray[j]);
+
+
 console.log(nodes);
 </script>
 
 
-<img src = "images/Cantor_Lv3.svg"></img>
+  <canvas id = "drawing" height = "460" width = "819"></canvas>
 			<script src="DirectionsScript.js"></script>
 </body>
 </html>

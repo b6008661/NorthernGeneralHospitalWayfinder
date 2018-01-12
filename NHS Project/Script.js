@@ -17,12 +17,11 @@ var nodeClass = function(id, name, disabled, type, facing, floor)
 	this.floor = floor;
 }
 
-var nodes = new Array;
 
-function populateNodeArray(numberOfNodes)
+function populateNodeArray(numberOfobj)
 {
-	for (var i = 0; i < numberOfNodes; i++) {
-		nodes.push()
+	for (var i = 0; i < numberOfobj; i++) {
+		obj.push()
 	}
 }
 
@@ -34,7 +33,7 @@ var connect = function(idNumber, direction)
 		direction = null;
 }
 
-i=0;
+/*i=0;
 
 
 var entrance = new nodeClass(i++,"West Entrance",true, E, "Null");
@@ -63,30 +62,30 @@ liftEast.connections.push(new connect(intersection.id, "East"), new connect (caf
 cafeEast.connections.push(new connect(liftEast.id, "West"));
 
 
-nodes.push(entrance);
-nodes.push(outpatients);
-nodes.push(wardA);
-nodes.push(qrWest);
-nodes.push(cardiology);
-nodes.push(intersection);
-nodes.push(qrNorth);
-nodes.push(stairsNorth);
-nodes.push(qrEast);
-nodes.push(liftEast);
-nodes.push(cafeEast);
+obj.push(entrance);
+obj.push(outpatients);
+obj.push(wardA);
+obj.push(qrWest);
+obj.push(cardiology);
+obj.push(intersection);
+obj.push(qrNorth);
+obj.push(stairsNorth);
+obj.push(qrEast);
+obj.push(liftEast);
+obj.push(cafeEast);*/
 
 function startAtId(idNumber)
 {
 	i = 0;
 	var found = false;
-	while (found == false && i != nodes.length)
+	while (found == false && i != obj.length)
 	{
-		if (nodes[i].id == idNumber)
+		if (obj[i].id == idNumber)
 			found = true;
 		else
 			i++;
 	}
-	return nodes[i].name;
+	return obj[i].name;
 }
 
 function getName()
@@ -99,15 +98,15 @@ function startAtName(enterName)
 {
 	i = 0;
 	var found = false;
-	while (found == false && i != nodes.length)
+	while (found == false && i != obj.length)
 	{
-		if (nodes[i].name.toUpperCase() == enterName.toUpperCase())
+		if (obj[i].name.toUpperCase() == enterName.toUpperCase())
 			found = true;
 		else
 			i++;
 	}
 	if (found == true)
-		console.log(nodes[i].name + " at id " + nodes[i].id);
+		console.log(obj[i].name + " at id " + obj[i].id);
 	else
 		console.log("Node not found");
 	return i;
@@ -169,25 +168,24 @@ function getIndexOfLocationInDropdownList(dropdown, location)
 function selectDefaultStart()
 {
 	var list = document.getElementById('dropdownboxstart');
-
 	var nodeID = getParameterByName("nodeID");
-	var index = getIndexOfLocationInDropdownList(list,nodeID);
+	var index = getIndexOfLocationInDropdownList(list, nodeID);
 	list.selectedIndex = index;
 }
 
 function populateDropDownStart()
-{
+{	
 	for(var i =0; i<obj.length; i++)
 		{
 			addToList(dropdownboxstart, i);
 		}
 	// for (var i = 0; i < obj.length; i++) {
-	// //	if (nodes[i].type == Q)
+	// //	if (obj[i].type == Q)
 	// 	//	addToList(dropdownboxstart, i);
 	// }
 
-	// for (var i = 0; i < nodes.length; i++) {
-	// 	if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+	// for (var i = 0; i < obj.length; i++) {
+	// 	if (obj[i].type == E || obj[i].type == M || obj[i].type == C)
 	// 		addToList(dropdownboxstart, i);
 	// }
 }
@@ -197,8 +195,8 @@ function populateDropDownEnd()
 		{
 			addToList(dropdownboxend, i);
 		}
-	// for (var i = 0; i < nodes.length; i++) {
-	// 	if (nodes[i].type == E || nodes[i].type == M || nodes[i].type == C)
+	// for (var i = 0; i < obj.length; i++) {
+	// 	if (obj[i].type == E || obj[i].type == M || obj[i].type == C)
 	// 		addToList(dropdownboxend, i);
 	// }
 }
@@ -206,8 +204,8 @@ function populateDropDownEnd()
 function addToList(dropDown,i)
 {
 	var newDropDownOption = document.createElement("OPTION");
-	newDropDownOption.text = obj[i].NodeID;
-	newDropDownOption.value = obj[i].NodeID;
+	newDropDownOption.text = obj[i].name;
+	newDropDownOption.value = obj[i].name;
 	dropDown.options.add(newDropDownOption);
 }
 
@@ -218,7 +216,7 @@ function findPath()
 	var end = startAtName(dropdownboxend.value);
 	var start = startAtName(dropdownboxstart.value);
 	localStorage.setItem("previousLocation",dropdownboxstart.options[dropdownboxstart.selectedIndex].text);
-  var path = new Array();
+  	var path = new Array();
 	fastestPath = new Array();
 	var loc = start;
 	var previous = start;
@@ -231,14 +229,14 @@ function findPath()
 
 	function followPath()
 	{
-		for (var i = 0; i < nodes[loc].connections.length; i++) {	 //Loops through each edge
-			if (isDisabled==true && nodes[loc].disabled == false)
+		for (var i = 0; i < obj[loc].connections.length; i++) {	 //Loops through each edge
+			if (isDisabled==true && obj[loc].disabled == false)
 				pathTraversable = false;
 			else
 				pathTraversable = true;
-			if(!path.includes(nodes[loc].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
-				path.push(nodes[loc].connections[i].id);						//Adds node to path array
-				if (nodes[loc].connections[i].id == end) {					//Checks if next node is the end
+			if(!path.includes(obj[loc].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
+				path.push(obj[loc].connections[i].id);						//Adds node to path array
+				if (obj[loc].connections[i].id == end) {					//Checks if next node is the end
 					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
 						fastestPath = path.slice();											//Copies current path into the global variable fastest path
 						path.splice(-1,1);
@@ -249,8 +247,8 @@ function findPath()
 					}
 				}
 				else {																								//If next node isn't the destination then...
-					loc = nodes[loc].connections[i].id;								//Set new location to the next node
-					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
+					loc = obj[loc].connections[i].id;								//Set new location to the next node
+					followPath(); 																	  //**Recursion** Go through for loop of edges connected to obj
 							path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
 							loc = path[path.length-1]; 										  //New location is the previous node
 						}
@@ -265,19 +263,19 @@ function findPath()
 					console.log( i + ". " + startAtId(fastestPath[i]));
 				}
 
-			if (nodes[fastestPath[0]].type == Q) {
-			var newFacing = nodes[fastestPath[0]].facing;
+			if (obj[fastestPath[0]].type == Q) {
+			var newFacing = obj[fastestPath[0]].facing;
 			var i = 0;
 			console.log("Facing the QR code turn " + findInstruction(newFacing, findNextNodeDirection(i)) + " and walk straight");
 			newFacing = findNextNodeDirection(i);
 					for (i=1; i < fastestPath.length-1; i++) {
 							var nextDirection = findInstruction(newFacing, findNextNodeDirection(i));
-							var locationName = nodes[fastestPath[i]].name;
+							var locationName = obj[fastestPath[i]].name;
 							var cafeMessage
 
-							if (nodes[fastestPath[i]].type == L)
+							if (obj[fastestPath[i]].type == L)
 								locationName = "the lifts";
-							if (nodes[fastestPath[i]].type == H)
+							if (obj[fastestPath[i]].type == H)
 								locationName = "the intersection";
 
 
@@ -292,9 +290,9 @@ function findPath()
 
 							newFacing = findNextNodeDirection(i);
 					}
-					console.log("You have now reached " + nodes[fastestPath[fastestPath.length-1]].name);
+					console.log("You have now reached " + obj[fastestPath[fastestPath.length-1]].name);
 
-					if (nodes[fastestPath[i]].type == C)
+					if (obj[fastestPath[i]].type == C)
 						console.log("Enjoy your meal!");
 						console.log("-------------------");
 				}
@@ -305,9 +303,9 @@ function findPath()
 		{
 			var nextFastestPathPosition = fastestPathPosition + 1;
 
-			for (var i = 0; i < nodes[fastestPath[fastestPathPosition]].connections.length; i++) {
-				if (nodes[fastestPath[fastestPathPosition]].connections[i].id == fastestPath[nextFastestPathPosition])
-					return nodes[fastestPath[fastestPathPosition]].connections[i].direction;
+			for (var i = 0; i < obj[fastestPath[fastestPathPosition]].connections.length; i++) {
+				if (obj[fastestPath[fastestPathPosition]].connections[i].id == fastestPath[nextFastestPathPosition])
+					return obj[fastestPath[fastestPathPosition]].connections[i].direction;
 			}
 		}
 
@@ -411,8 +409,10 @@ function dropDownBoxEndValue()
 }
 
 function setDisabledValue()
-{
-	return encodeURIComponent(disabled.checked);
+{		if (disabled.checked == false)
+		return  encodeURIComponent(disabled.checked);
+	else
+		return encodeURIComponent(disabled.checked);
 }
 
 function setValuesForBoxes()
@@ -421,3 +421,5 @@ function setValuesForBoxes()
 	document.getElementById("end").value = dropDownBoxEndValue();
 	document.getElementById("disabled").value = setDisabledValue();
 }
+
+

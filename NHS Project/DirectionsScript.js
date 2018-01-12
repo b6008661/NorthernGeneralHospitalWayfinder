@@ -121,7 +121,7 @@ function getName()
 }
 
 function startAtName(enterName)
-{
+{   
 	i = 0;
 	var found = false;
 	while (found == false && i != nodes.length)
@@ -131,10 +131,10 @@ function startAtName(enterName)
 		else
 			i++;
 	}
-	if (found == true)
-		console.log(nodes[i].name + " at id " + nodes[i].id);
-	else
-		console.log("Node not found");
+	//if (found == true)
+		//console.log(nodes[i].name + " at id " + nodes[i].id);
+	//else
+		//console.log("Node not found");
 	return i;
 }
 
@@ -188,28 +188,31 @@ var fastestPath = new Array();
 
 function findPath(start, end)
 {
-  var path = new Array();
+ 	var path = new Array();
 	fastestPath = new Array();
-	var loc = start;
+	var loc = nodes[start].name;
 	var previous = start;
-  var end = end;
+  	var end = nodes[end].name;
 	var isDisabled = getParameterByName("disabled");
 	var pathTraversable = true;
 
-	path.push(start);
+	path.push(nodes[startAtName(loc)].name);
 	followPath();
 	displayDirections();
 
 	function followPath()
 	{
-		for (var i = 0; i < nodes[loc].connections.length; i++) {	 //Loops through each edge
-			if (isDisabled==true && nodes[loc].disabled == false)
+		//console.log(nodes[startAtName(loc)]);
+		for (var i = 0; i < nodes[startAtName(loc)].connections.length; i++) {	 //Loops through each edge
+			
+			if (isDisabled==true && nodes[startAtName(loc)].disabled == false)
 				pathTraversable = false;
 			else
 				pathTraversable = true;
-			if(!path.includes(nodes[loc].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
-				path.push(nodes[loc].connections[i].id);						//Adds node to path array
-				if (nodes[loc].connections[i].id == end) {					//Checks if next node is the end
+			if(!path.includes(nodes[startAtName(loc)].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
+				path.push(nodes[startAtName(loc)].connections[i].id);						//Adds node to path array
+				console.log(path);
+				if (nodes[startAtName(loc)].connections[i].id == end) {					//Checks if next node is the end
 					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
 						fastestPath = path.slice();											//Copies current path into the global variable fastest path
 						path.splice(-1,1);
@@ -217,12 +220,14 @@ function findPath(start, end)
 					else if (path.length <= fastestPath.length) {				//Checks if a new path to the end is faster than the current one
 							fastestPath = path.slice();										//Copies current path into the global variable fastest path
 							path.splice(-1,1);
+							console.log(path);
 					}
 				}
 				else {																								//If next node isn't the destination then...
-					loc = nodes[loc].connections[i].id;								//Set new location to the next node
+					loc = nodes[startAtName(loc)].connections[i].id;								//Set new location to the next node
 					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
-							path.splice(-1,1);														  //Backtrack the algorithm by one to previous node in path
+							path.splice(-1,1);													  //Backtrack the algorithm by one to previous node in path
+							console.log(path);
 							loc = path[path.length-1]; 										  //New location is the previous node
 						}
 					}
@@ -233,22 +238,22 @@ function findPath(start, end)
 		{
 
 			for (var i = 0; i < fastestPath.length; i++) { //List all items in array
-					console.log( i + ". " + startAtId(fastestPath[i]));
+					console.log( i + ". " + fastestPath[i]);
 				}
 
-			if (nodes[fastestPath[0]].type == Q) {
-			var newFacing = nodes[fastestPath[0]].facing;
+			//if (nodes[startAtName(fastestPath[0])].type == Q) {
+			var newFacing = nodes[startAtName(fastestPath[0])].facing;
 			var i = 0;
 			console.log("Facing the QR code turn " + findInstruction(newFacing, findNextNodeDirection(i)) + " and walk straight");
 			newFacing = findNextNodeDirection(i);
 					for (i=1; i < fastestPath.length-1; i++) {
 							var nextDirection = findInstruction(newFacing, findNextNodeDirection(i));
-							var locationName = nodes[fastestPath[i]].name;
+							var locationName = nodes[startAtName(fastestPath[i])].name;
 							var cafeMessage
 
-							if (nodes[fastestPath[i]].type == L)
+							if (nodes[startAtName(fastestPath[i])].type == L)
 								locationName = "the lifts";
-							if (nodes[fastestPath[i]].type == I)
+							if (nodes[startAtName(fastestPath[i])].type == I)
 								locationName = "the intersection";
 
 
@@ -263,12 +268,12 @@ function findPath(start, end)
 
 							newFacing = findNextNodeDirection(i);
 					}
-					console.log("You have now reached " + nodes[fastestPath[fastestPath.length-1]].name);
+					console.log("You have now reached " + nodes[startAtName(fastestPath[fastestPath.length-1])].name);
 
-					if (nodes[fastestPath[i]].type == C)
+					if (nodes[startAtName(fastestPath[i])].type == C)
 						console.log("Enjoy your meal!");
 						console.log("-------------------");
-				}
+				//}
 			}
 		}
 
@@ -276,9 +281,9 @@ function findPath(start, end)
 		{
 			var nextFastestPathPosition = fastestPathPosition + 1;
 
-			for (var i = 0; i < nodes[fastestPath[fastestPathPosition]].connections.length; i++) {
-				if (nodes[fastestPath[fastestPathPosition]].connections[i].id == fastestPath[nextFastestPathPosition])
-					return nodes[fastestPath[fastestPathPosition]].connections[i].direction;
+			for (var i = 0; i < nodes[startAtName(fastestPath[fastestPathPosition])].connections.length; i++) {
+				if (nodes[startAtName(fastestPath[fastestPathPosition])].connections[i].id == fastestPath[nextFastestPathPosition])
+					return nodes[startAtName(fastestPath[fastestPathPosition])].connections[i].direction;
 			}
 		}
 

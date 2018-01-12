@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-require('include/conn.inc.php');
+require('include/conn.inc.php'); 
 ?>
 
 <!DOCTYPE html>
@@ -19,13 +19,13 @@ require('include/conn.inc.php');
 <body>
 <header>
 	<img src="images/nhs_logo.jpg" alt="nhs logo"><a href="https://www.nhs.uk/pages/home.aspx"></a>
-	<h1 class="headerText">Northern General Hospital</h1>
-
-	<input type=text size=12 placeholder="Tracking Code" class=qrcode-text
-	><label class=qrcode-text-btn>
-		<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
-	</label>
-<input type=button value="Go" disabled>
+<div class="headerText">
+	<h1>Northern General Hospital</h1>
+</div>
+	<form>
+		<input type= "text" name = "location" value="">
+		<input type="submit" value="Search">
+	</form>
 
 </header>
 
@@ -38,7 +38,7 @@ require('include/conn.inc.php');
 	  -->
 		<div class="container-fluid">
 		<div class = "row">
-			<div class = "col-sm-4">
+			<div class = "col-sm-3">
 				<div class="box">
 		<h2>Select your starting location:</h2>
 		<div class = "dropDown">
@@ -46,28 +46,48 @@ require('include/conn.inc.php');
 	</div>
 	</div>
 	</div>
-		<div class = "col-sm-4">
+		<div class = "col-sm-3">
 		<h2>Select your destination:</h2>
 		<div class = "dropDown">
 		<select name = "dropdownboxend" id = "dropdownboxend"></select>
 	</div>
 	</div>
 
-<div class="col-sm-4">
-	<h2>Would you like to avoid staircases?</h2>
+<div class="col-sm-3">
+	<br>
+	<div class = "box">
+	<form action="">
+	<h2>Would you like to avoid staircases?</h2> 
+	</form>
+</div>
+
+<div class="col-sm-3">
 <div class="findPath">
 		<form action="directions.php">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
-			<input id="disabled" name="disabled" type="checkbox" value="" checked=false/>
+			<input id="disabled" name="disabled" type="hidden" value="" checked="false" />
 </div>
-		<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
+</div>
+<!--
+	<div class="col-sm-3">
+	<br>
+	<div class = "box">
+	<form action="">
+	<h2>Would you like to avoid staircases?</h2> <input type="checkbox" name = "disabled" checked=false>
+	</form>
+</div>
+-->
+		
+<div class="col-md-4">
+	<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
 		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
 		</form>
 		</div>
 	</div>
 </div>
-
+</div>
+</div>
 <?php
 $nodes = array();
 $numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
@@ -92,8 +112,7 @@ console.log(obj);
 </body>
 
 <script src="Script.js">
-</script>
-<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+	
 </script>
 
 </html>

@@ -23,7 +23,10 @@ window.onload = function() { 							//load function as soon as the page loads
 // 	  context.stroke();
 	  
 
-
+for (j=0; j<reverseconnectionsArray.length;j++)
+	for(i=0;i<nodes.length;i++)
+		if (nodes[i].name == reverseconnectionsArray[j].start)
+			nodes[i].connections.push(reverseconnectionsArray[j]);
 
 	  //START OF ALGORITHM
       findPath(getParameterByName("start"),getParameterByName("end"));
@@ -222,7 +225,7 @@ function findPath(start, end)
 				pathTraversable = true;
 			if(!path.includes(nodes[startAtName(loc)].connections[i].id) && pathTraversable == true) {		//Check if next node is in the path array (double back)
 				path.push(nodes[startAtName(loc)].connections[i].id);						//Adds node to path array
-				console.log(path);
+				//console.log(path);
 				if (nodes[startAtName(loc)].connections[i].id == end) {					//Checks if next node is the end
 					if (fastestPath.length == 0)	{										//Checks if this is the first found path to the end
 						fastestPath = path.slice();											//Copies current path into the global variable fastest path
@@ -231,14 +234,14 @@ function findPath(start, end)
 					else if (path.length <= fastestPath.length) {				//Checks if a new path to the end is faster than the current one
 							fastestPath = path.slice();										//Copies current path into the global variable fastest path
 							path.splice(-1,1);
-							console.log(path);
+							//console.log(path);
 					}
 				}
 				else {																								//If next node isn't the destination then...
 					loc = nodes[startAtName(loc)].connections[i].id;								//Set new location to the next node
 					followPath(); 																	  //**Recursion** Go through for loop of edges connected to nodes
 							path.splice(-1,1);													  //Backtrack the algorithm by one to previous node in path
-							console.log(path);
+							//console.log(path);
 							loc = path[path.length-1]; 										  //New location is the previous node
 						}
 					}
@@ -252,10 +255,24 @@ function findPath(start, end)
 					console.log( i + ". " + fastestPath[i]);
 				}
 
-			//if (nodes[startAtName(fastestPath[0])].type == Q) {
+			if(nodes[startAtName(fastestPath[0])].facing == "") {
+				document.getElementById("directionBox").innerHTML += "Written directions currently unavialable"
+			}
+				else
+				{
 			var newFacing = nodes[startAtName(fastestPath[0])].facing;
 			var i = 0;
-			console.log("Facing the QR code turn " + findInstruction(newFacing, findNextNodeDirection(i)) + " and walk straight");
+
+
+
+			if (nodes[startAtName(fastestPath[i])].type == R)
+				if (findInstruction(newFacing, findNextNodeDirection(i)) == "straight")
+					document.getElementById("directionBox").innerHTML +=("With your back to the door ")
+						else
+							document.getElementById("directionBox").innerHTML +=("With your back to the door go " + findInstruction(newFacing, findNextNodeDirection(i)));
+			
+
+
 			newFacing = findNextNodeDirection(i);
 					for (i=1; i < fastestPath.length-1; i++) {
 							var nextDirection = findInstruction(newFacing, findNextNodeDirection(i));
@@ -268,23 +285,24 @@ function findPath(start, end)
 								locationName = "the intersection";
 
 
+
 							if (nextDirection == "left" || nextDirection == "right")
-								console.log("Turn " + nextDirection + " at " + locationName);
-								else if (nextDirection == "straight")
-									console.log("Continue walking past " + locationName);
+								document.getElementById("directionBox").innerHTML += ("</br>" + "Take a " + nextDirection );
+								//else if (nextDirection == "straight")
+									//document.getElementById("directionBox").innerHTML+=( "</br>" +"Continue walking");
 									else if(nextDirection == "Turn around and walk forward")
-									 	console.log(nextDirection + " past " + locationName);
+									 	document.getElementById("directionBox").innerHTML+=( "</br>" + nextDirection + " past " + locationName);
 
 
 
 							newFacing = findNextNodeDirection(i);
 					}
-					console.log("You have now reached " + nodes[startAtName(fastestPath[fastestPath.length-1])].name);
+					document.getElementById("directionBox").innerHTML+=("</br>" +" You have now reached " + nodes[startAtName(fastestPath[fastestPath.length-1])].name);
 
-					if (nodes[startAtName(fastestPath[i])].type == C)
-						console.log("Enjoy your meal!");
-						console.log("-------------------");
-				//}
+					//if (nodes[startAtName(fastestPath[i])].type == C)
+					//	console.log("Enjoy your meal!");
+					//	console.log("-------------------");
+				}
 			}
 		}
 
@@ -424,8 +442,10 @@ function setValuesForBoxes()
 
 	for (i = 0; i < line.length; i++)
 	{
+		//console.log(line[i]);
 		if( mapDocument.getElementById(line[i]) != null)
 		{
+
 		  mapDocument.getElementById(line[i]).classList.add('linevisable');
 		  mapDocument.getElementById(line[i]).classList.remove('linedefault');
 		}

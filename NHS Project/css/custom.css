@@ -7,7 +7,7 @@ body {
 	width: 100%;
 	background-color: #005eb8;
 	font-size: 25px;
-  margin:5px;
+  	/*margin:5px;*/
 }
 header {
 	width:85%;
@@ -99,10 +99,18 @@ input[type=checkbox] {
 	height: 50%;
 }
 .col-sm-12 {
-
+background-color: #ffffff;
+ text-align: center;
+ border: 5px solid #005eb8;
 }
+
 .door {
 	height: 5px;
 	width: 5px;
 	background-color: 555;
+}
+
+#directionBox{
+	font-size: 20px;
+	text-align: left;
 }

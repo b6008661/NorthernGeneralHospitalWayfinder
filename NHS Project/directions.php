@@ -7,7 +7,9 @@ require('include/conn.inc.php');
 <html>
 <head>
 	<meta name ="viewport" content="width-device-width, initial-scale=1">
-	<link rel = "stylesheet" type="text/css" href="css/StyleSheet.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel = "stylesheet" type="text/css" href="css/custom.css">
+
 	<title> NHS WayFinder </title>
 </head>
 
@@ -138,6 +140,22 @@ for (i=0; i<nodes.length;i++)
 	nodes[i].connections = [];
 }
 
+
+for (j=0; j<reverseconnectionsArray.length;j++)
+		{
+		if (reverseconnectionsArray[j].direction == "North")
+			reverseconnectionsArray[j].direction = "South";
+
+		if (reverseconnectionsArray[j].direction == "South")
+			reverseconnectionsArray[j].direction = "North";	
+
+		if (reverseconnectionsArray[j].direction == "East")
+			reverseconnectionsArray[j].direction = "West";
+
+		if (reverseconnectionsArray[j].direction == "West")
+			reverseconnectionsArray[j].direction = "East";
+		}
+
 for (j=0; j<connectionsArray.length;j++)
 	for(i=0;i<nodes.length;i++)
 		if (nodes[i].name == connectionsArray[j].start)
@@ -149,11 +167,25 @@ for (j=0; j<reverseconnectionsArray.length;j++)
 			nodes[i].connections.push(reverseconnectionsArray[j]);
 
 
+
+
 console.log(nodes);
 </script>
 
+<div class = "container-fluid">
 
-<object id = "map" type = "image/svg+xml" data = "images/Cantor_Lvl3.svg"></object>
+<div class = "col-sm-12">
+	<object id = "map" type = "image/svg+xml" data = "images/Cantor_Lvl3.svg"></object>
+</div>
+
+<div class = "col-sm-12">
+	<p id = "directionBox"></p>
+</div>
+
+</div>
+
+
+
 <script src="DirectionsScript.js"></script>
 
 </body>

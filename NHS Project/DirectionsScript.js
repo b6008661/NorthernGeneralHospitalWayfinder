@@ -266,8 +266,8 @@ function findPath(start, end)
 
 
 			if (nodes[startAtName(fastestPath[i])].type == R)
-				if (findInstruction(newFacing, findNextNodeDirection(i)) == "straight")
-					document.getElementById("directionBox").innerHTML +=("With your back to the door ")
+				if (findInstruction(newFacing, findNextNodeDirection(i)) == "straight" || (findInstruction(newFacing, findNextNodeDirection(i)) == "Turn around and walk forward"))
+					document.getElementById("directionBox").innerHTML +=("With your back to the door walk forward")
 						else
 							document.getElementById("directionBox").innerHTML +=("With your back to the door go " + findInstruction(newFacing, findNextNodeDirection(i)));
 			
@@ -283,6 +283,8 @@ function findPath(start, end)
 								locationName = "the lifts";
 							if (nodes[startAtName(fastestPath[i])].type == I)
 								locationName = "the intersection";
+							if (nodes[startAtName(fastestPath[i])].type == T)
+								locationName = "the toilets";
 
 
 

@@ -24,7 +24,7 @@ require('include/conn.inc.php');
 </div>
 <input id = "tracking" type=text size=12 placeholder="Tracking Code" class=qrcode-text
  	><label class=qrcode-text-btn>
- 		<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
+ 	<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
  	</label>
  <input type=button value="Go" onclick="goButtonClicked()">
 
@@ -89,19 +89,54 @@ require('include/conn.inc.php');
 </div>
 </div>
 <?php
+
+
+function arrayToObject($array) {
+    if (!is_array($array)) {
+        return $array;
+    }
+
+    $object = new stdClass();
+    if (is_array($array) && count($array) > 0) {
+        foreach ($array as $name=>$value) {
+            $name = strtolower(trim($name));
+            if (!empty($name)) {
+                $object->$name = arrayToObject($value);
+            }
+        }
+        return $object;
+    }
+    else {
+        return FALSE;
+    }
+
+	}
+
+
+
+
+
 $nodes = array();
 $numberOfNodes = "SELECT * FROM Cantor_Nodes_ThirdFloor";
-$stmt = $pdo->query($numberOfNodes);
+//$stmt = $pdo->query($numberOfNodes);
 
-while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-{
-$nodestest = array('name'=>$row['Name']);
-array_push($nodes, $nodestest);
-}
+	 $stmt = $pdo->query($numberOfNodes);
+		$reverseconnectionsarray = array();
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+	{
+		$array = array(
+		'name'=>$row['Name'],
+		'type'=>$row['NodeType'],
+		//'start'=>$row['End'],
+		//'facing'=>$row['Facing'],
+		//'line_name'=> $row['Line_Name'],
+		);
+		array_push($reverseconnectionsarray,arrayToObject($array));
+	}
 ?>
 
 <?php
-$nodes_json = json_encode($nodes);
+$nodes_json = json_encode($reverseconnectionsarray);
 ?>
 
 <script type="text/javascript">

@@ -132,7 +132,7 @@ var connectionsArray = JSON.parse('<?php echo $connectionsarray_json; ?>');
 
 var reverseconnectionsArray = JSON.parse('<?php echo $reverseconnectionsarray_json; ?>');
 console.log(connectionsArray);
-console.log( reverseconnectionsArray);
+console.log(reverseconnectionsArray);
 
 
 for (i=0; i<nodes.length;i++)
@@ -163,10 +163,14 @@ for (j=0; j<connectionsArray.length;j++)
 
 for (j=0; j<reverseconnectionsArray.length;j++)
 	for(i=0;i<nodes.length;i++)
-		if (nodes[i].name == reverseconnectionsArray[j].start)
+		if (nodes[i].name == reverseconnectionsArray[j].id)
 			nodes[i].connections.push(reverseconnectionsArray[j]);
 
 
+console.log("Normal")
+console.log(connectionsArray)
+console.log("Reverse")
+console.log(reverseconnectionsArray);
 
 
 console.log(nodes);

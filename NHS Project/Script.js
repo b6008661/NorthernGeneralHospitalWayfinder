@@ -5,6 +5,8 @@ var H = "Hallway";
 var S = "Stairs";
 var L = "Lift";
 var C = "Cafe";
+var R = "Room";
+var T = "Toilet";
 
 var nodeClass = function(id, name, disabled, type, facing, floor)
 {
@@ -17,14 +19,40 @@ var nodeClass = function(id, name, disabled, type, facing, floor)
 	this.floor = floor;
 }
 
-function goButtonclicked() {
+function goButtonClicked() {
 	var tracking = document.getElementById("tracking");
 	var text = tracking.value;
-	var list = document.getElementById("dopdownboxstart");
+	var list = document.getElementById("dropdownboxstart");
 	var index = getIndexOfLocationInDropdownList(list, text);
 	dropdownboxstart.selectedIndex = index;
 	console.log(text);
 }
+
+function openQRCamera(node) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    node.value = "";
+    qrcode.callback = function(res) {
+      if(res instanceof Error) {
+        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+      } else {
+        node.parentNode.previousElementSibling.value = res;
+      }
+    };
+    qrcode.decode(reader.result);
+
+
+  };
+  
+  
+  
+
+
+  reader.readAsDataURL(node.files[0]);
+    //var ret = getParameterByName("nodeID", node.files[0])
+}
+
+
 
 function populateNodeArray(numberOfobj)
 {
@@ -183,10 +211,17 @@ function selectDefaultStart()
 
 function populateDropDownStart()
 {	
+
+
 	for(var i =0; i<obj.length; i++)
 		{
-			addToList(dropdownboxstart, i);
+			console.log(obj[i].name)
+			if (obj[i].type == R || obj[i].type == Q)
+			
+				addToList(dropdownboxstart, i);
+		
 		}
+
 	// for (var i = 0; i < obj.length; i++) {
 	// //	if (obj[i].type == Q)
 	// 	//	addToList(dropdownboxstart, i);
@@ -199,14 +234,20 @@ function populateDropDownStart()
 }
 
 function populateDropDownEnd()
-{	for(var i =0; i<obj.length; i++)
+{	
+
+	for(var i =0; i<obj.length; i++)
 		{
+				if (obj[i].type == R || obj[i].type == T || obj[i].type == Q)
+			{
 			addToList(dropdownboxend, i);
+			}
 		}
 	// for (var i = 0; i < obj.length; i++) {
 	// 	if (obj[i].type == E || obj[i].type == M || obj[i].type == C)
 	// 		addToList(dropdownboxend, i);
 	// }
+	
 }
 
 function addToList(dropDown,i)

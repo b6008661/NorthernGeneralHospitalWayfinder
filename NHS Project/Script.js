@@ -169,12 +169,14 @@ function getIndexOfLocationInDropdownList(dropdown, location)
 function selectDefaultStart()
 {
 	var list = document.getElementById('dropdownboxstart');
+
 	var nodeID = getParameterByName("nodeID");
-	list.selectedIndex = nodeID;
+	var index = getIndexOfLocationInDropdownList(list,nodeID);
+	list.selectedIndex = index;
 }
 
 function populateDropDownStart()
-{	
+{
 	for(var i =0; i<obj.length; i++)
 		{
 			addToList(dropdownboxstart, i);
@@ -204,8 +206,8 @@ function populateDropDownEnd()
 function addToList(dropDown,i)
 {
 	var newDropDownOption = document.createElement("OPTION");
-	newDropDownOption.text = obj[i].name;
-	newDropDownOption.value = obj[i].name;
+	newDropDownOption.text = obj[i].NodeID;
+	newDropDownOption.value = obj[i].NodeID;
 	dropDown.options.add(newDropDownOption);
 }
 

@@ -46,7 +46,7 @@ $stmt = $pdo->query($numberOfNodes);
 	{
 	$nodestest = array('id'=>$row['ID'] -1);
 	// $nodestest = $nodestest-1;
-	array_push($nodes, $nodestest);	
+	array_push($nodes, $nodestest);
 	$nodestest = array('name'=>$row['Name']);
 	array_push($nodes, $nodestest);
 	$nodestest = array('type'=>$row['NodeType']);
@@ -101,7 +101,7 @@ console.log(nodes);
 </script>
 
 
-  <canvas id = "drawing" height = "460" width = "819"></canvas>
+<img src = "images/Cantor_Lv3.svg"></img>
 			<script src="DirectionsScript.js"></script>
 </body>
 </html>

@@ -22,10 +22,11 @@ require('include/conn.inc.php');
 <div class="headerText">
 	<h1>Northern General Hospital</h1>
 </div>
-	<form>
-		<input type= "text" name = "location" value="">
-		<input type="submit" value="Search">
-	</form>
+<input type=text size=12 placeholder="Tracking Code" class=qrcode-text
+ 	><label class=qrcode-text-btn>
+ 		<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
+ 	</label>
+ <input type=button value="Go" disabled>
 
 </header>
 
@@ -38,7 +39,7 @@ require('include/conn.inc.php');
 	  -->
 		<div class="container-fluid">
 		<div class = "row">
-			<div class = "col-sm-3">
+			<div class = "col-sm-4">
 				<div class="box">
 		<h2>Select your starting location:</h2>
 		<div class = "dropDown">
@@ -46,14 +47,14 @@ require('include/conn.inc.php');
 	</div>
 	</div>
 	</div>
-		<div class = "col-sm-3">
+		<div class = "col-sm-4">
 		<h2>Select your destination:</h2>
 		<div class = "dropDown">
 		<select name = "dropdownboxend" id = "dropdownboxend"></select>
 	</div>
 	</div>
 
-<div class="col-sm-3">
+<div class="col-sm-4">
 	<br>
 	<div class = "box">
 	<form action="">
@@ -61,13 +62,13 @@ require('include/conn.inc.php');
 	</form>
 </div>
 
-<div class="col-sm-3">
+
 <div class="findPath">
 		<form action="directions.php">
 			<input id="start" name="start" type="hidden" value="" />
 			<input id="end" name="end" type="hidden" value="" />
-			<input id="disabled" name="disabled" type="hidden" value="" checked="false" />
-</div>
+			<input id="disabled" name="disabled" type="checkbox" value="" checked="false" />
+
 </div>
 <!--
 	<div class="col-sm-3">
@@ -79,11 +80,10 @@ require('include/conn.inc.php');
 </div>
 -->
 		
-<div class="col-md-4">
+
 	<button class = "button" onclick = "setValuesForBoxes()"> Find Path </button>
 		<!--<button class = "button" onclick = "findPath()"> Find Path </button>-->
 		</form>
-		</div>
 	</div>
 </div>
 </div>
@@ -109,10 +109,15 @@ $nodes_json = json_encode($nodes);
 var obj = JSON.parse('<?php echo $nodes_json; ?>');
 console.log(obj);
 </script>
+
+
+</object> 
 </body>
 
 <script src="Script.js">
+
 	
 </script>
+<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 
 </html>

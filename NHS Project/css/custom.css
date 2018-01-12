@@ -98,3 +98,11 @@ input[type=checkbox] {
 	width: 40%;
 	height: 50%;
 }
+.col-sm-12 {
+
+}
+.door {
+	height: 5px;
+	width: 5px;
+	background-color: 555;
+}

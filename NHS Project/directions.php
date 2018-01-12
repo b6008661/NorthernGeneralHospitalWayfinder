@@ -14,11 +14,9 @@ require('include/conn.inc.php');
 <body>
   <header>
   	<img src="images/nhs_logo.jpg" alt="nhs logo"><a href="https://www.nhs.uk/pages/home.aspx"></a>
-  	<form class="locationInput">
-  		<input type= "text" name = "location" value="Enter something here ">
-  		<input type="submit" value="Submit">
-  	</form>
   </header>
+
+
 
 
 <?php
@@ -155,7 +153,8 @@ console.log(nodes);
 </script>
 
 
-  <canvas id = "drawing" height = "460" width = "819"></canvas>
-			<script src="DirectionsScript.js"></script>
+<object id = "map" type = "image/svg+xml" data = "images/Cantor_Lvl3.svg"></object>
+<script src="DirectionsScript.js"></script>
+
 </body>
 </html>

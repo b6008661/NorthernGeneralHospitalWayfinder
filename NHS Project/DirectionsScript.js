@@ -1,32 +1,33 @@
 window.onload = function() { 							//load function as soon as the page loads
-var drawing = document.getElementById("drawing");		//select canvas id
-var context = drawing.getContext('2d');					//set context
+// var drawing = document.getElementById("drawing");		//select canvas id
+// var context = drawing.getContext('2d');					//set context
 
-var imageObj = new Image();								//new image
+// var imageObj = new Image();								//new image
 
-imageObj.onload=function()								//function to load image first
-{
-context.drawImage(imageObj,100, 20, 500,500);			//draw image with coords to start and size
-};
+// imageObj.onload=function()								//function to load image first
+// {
+// context.drawImage(imageObj,100, 20, 500,500);			//draw image with coords to start and size
+// };
 
-imageObj.src = 'HospitalFloorPlanBasic.png';			//image selection
+// imageObj.src = 'HospitalFloorPlanBasic.png';			//image selection
 
-context.globalCompositeOperation = 'destination-over';	//composition selection to put arrow on top of image
-      context.beginPath();									//start arrow
-      context.moveTo(270, 270);								//start point
-      context.lineTo(430, 265);								//end point
-context.moveTo(430, 265);
-context.lineTo(578, 100);
-      context.lineWidth = 3;									//line width
-// line color - self explanatory
-      context.strokeStyle = "black";
-	  context.stroke();
+// context.globalCompositeOperation = 'destination-over';	//composition selection to put arrow on top of image
+//       context.beginPath();									//start arrow
+//       context.moveTo(270, 270);								//start point
+//       context.lineTo(430, 265);								//end point
+// context.moveTo(430, 265);
+// context.lineTo(578, 100);
+//       context.lineWidth = 3;									//line width
+// // line color - self explanatory
+//       context.strokeStyle = "black";
+// 	  context.stroke();
 	  
 
 
 
 	  //START OF ALGORITHM
       findPath(getParameterByName("start"),getParameterByName("end"));
+      makePathway(fastestPath);
 }
 
 var E = "Entrance/Exit";
@@ -193,12 +194,22 @@ function findPath(start, end)
 	var loc = nodes[start].name;
 	var previous = start;
   	var end = nodes[end].name;
+
 	var isDisabled = getParameterByName("disabled");
+
+	if(isDisabled == null)
+		isDisabled = false; 
+
 	var pathTraversable = true;
 
 	path.push(nodes[startAtName(loc)].name);
 	followPath();
 	displayDirections();
+	//makePathway(fastestPath);
+
+
+
+
 
 	function followPath()
 	{
@@ -390,4 +401,39 @@ function setValuesForBoxes()
 {
 	document.getElementById("start").value = dropDownBoxStartValue();
 	document.getElementById("end").value = dropDownBoxEndValue();
+}
+
+
+	function makePathway(node)
+{
+		//var node will need to be updated once the database if feeding information into the webpage
+	//var node = ["Door_3-4", "Intersection_3-9324", "Intersection_3-9322", "Intersection_3-9321", "Intersection_3-9320", "Intersection_3-9319", "Intersection_3-1", "Intersection_3-9316", "Intersection_3-9315", "9315"];
+	var line = [];
+	var linerev = [];
+
+	for (i = 0; i < node.length - 1; i++)
+	{
+	  line.push(node[i] + "_TO_" + node[i+1]);
+	  linerev.push(node[i+1] + "_TO_" + node[i]);
+
+	}
+
+	var map = document.getElementById("map");
+	var mapDocument = map.contentDocument;
+
+
+	for (i = 0; i < line.length; i++)
+	{
+		if( mapDocument.getElementById(line[i]) != null)
+		{
+		  mapDocument.getElementById(line[i]).classList.add('linevisable');
+		  mapDocument.getElementById(line[i]).classList.remove('linedefault');
+		}
+		else
+		{
+		  mapDocument.getElementById(linerev[i]).classList.add('linevisable');
+		  mapDocument.getElementById(linerev[i]).classList.remove('linedefault');
+		}
+	}
+
 }

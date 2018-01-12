@@ -17,6 +17,14 @@ var nodeClass = function(id, name, disabled, type, facing, floor)
 	this.floor = floor;
 }
 
+function goButtonclicked() {
+	var tracking = document.getElementById("tracking");
+	var text = tracking.value;
+	var list = document.getElementById("dopdownboxstart");
+	var index = getIndexOfLocationInDropdownList(list, text);
+	dropdownboxstart.selectedIndex = index;
+	console.log(text);
+}
 
 function populateNodeArray(numberOfobj)
 {
@@ -114,7 +122,7 @@ function startAtName(enterName)
 
 window.onload = function()
 {
-	alert("Welcome to the NHS wayfinding system! Please select your starting location from the first drop-down box below, along with your destination in the desatination box below that.");
+	//alert("Welcome to the NHS wayfinding system! Please select your starting location from the first drop-down box below, along with your destination in the desatination box below that.");
 	populateDropDownStart();
 	populateDropDownEnd();
 	selectDefaultStart();

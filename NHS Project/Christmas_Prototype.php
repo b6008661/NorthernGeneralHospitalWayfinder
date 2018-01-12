@@ -22,11 +22,11 @@ require('include/conn.inc.php');
 <div class="headerText">
 	<h1>Northern General Hospital</h1>
 </div>
-<input type=text size=12 placeholder="Tracking Code" class=qrcode-text
+<input id = "tracking" type=text size=12 placeholder="Tracking Code" class=qrcode-text
  	><label class=qrcode-text-btn>
  		<input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1>
  	</label>
- <input type=button value="Go" disabled>
+ <input type=button value="Go" onclick="goButtonClicked()">
 
 </header>
 
